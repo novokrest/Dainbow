@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class DayReadActivityBuilder {
     private final LocalDate day;
     private final BookPages bookPages;
-    private long totalReadTimeInSeconds;
+    private int totalReadTimeInSeconds;
 
     public DayReadActivityBuilder(LocalDate day) {
         this.day = day;
@@ -16,7 +16,7 @@ public class DayReadActivityBuilder {
         BookPagesEx.add(this.bookPages, pages);
     }
 
-    public void addTime(long seconds) {
+    public void addTime(int seconds) {
         this.totalReadTimeInSeconds += seconds;
     }
 

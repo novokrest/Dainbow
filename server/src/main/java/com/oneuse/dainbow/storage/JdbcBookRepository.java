@@ -173,6 +173,12 @@ public class JdbcBookRepository extends JdbcRepository implements BookRepository
         }
 
         @Override
+        public int getPagesCount() {
+            loadBookPages();
+            return bookPages.getPagesCount();
+        }
+
+        @Override
         public void addPages(PageRange pageRange) {
             loadBookPages();
             bookPages.addPages(pageRange);

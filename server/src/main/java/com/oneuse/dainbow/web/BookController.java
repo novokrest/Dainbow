@@ -53,6 +53,9 @@ public class BookController {
             model.addAttribute("book", BookViewModel.createFrom(book));
         }
 
+        BookReadSummaryViewModel readSummary = BookReadSummaryViewModel.create(readHistoryRepository, bookId);
+        model.addAttribute("readSummary", readSummary);
+
         LogViewModel log = LogViewModel.forToday();
         model.addAttribute("log", log);
 

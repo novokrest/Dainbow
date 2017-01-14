@@ -12,6 +12,11 @@ public class BookPagesImpl implements BookPages {
         return pages;
     }
 
+    @Override
+    public int getPagesCount() {
+        return pages.size();
+    }
+
     public void addPages(PageRange pageRange) {
         addPageRange(pageRange);
     }

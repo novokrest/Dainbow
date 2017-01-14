@@ -33,7 +33,7 @@ public class BookViewModel {
         bookViewModel.setReadPagesCount(readPagesCount);
 
         int totalReadTime = 0;
-        bookViewModel.setTotalPagesCount(totalReadTime);
+        bookViewModel.setTotalReadTime(totalReadTime);
 
         bookViewModel.setPages(createPageViewModels(book));
 

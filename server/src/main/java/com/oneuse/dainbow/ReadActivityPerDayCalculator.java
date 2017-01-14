@@ -25,7 +25,7 @@ public class ReadActivityPerDayCalculator {
         getDayReadActivityBuilder(day).addPages(pages);
     }
 
-    private void addTime(LocalDate day, long time) {
+    private void addTime(LocalDate day, int time) {
         getDayReadActivityBuilder(day).addTime(time);
     }
 

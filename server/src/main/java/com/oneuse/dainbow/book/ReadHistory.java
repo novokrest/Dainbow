@@ -1,5 +1,6 @@
 package com.oneuse.dainbow.book;
 
+import com.oneuse.core.TimeSpan;
 import com.oneuse.dainbow.DayReadActivity;
 import com.oneuse.dainbow.ReadActivity;
 import com.oneuse.dainbow.ReadActivityPerDayCalculator;
@@ -16,5 +17,17 @@ public class ReadHistory {
 
     public List<DayReadActivity> getReadActivities() {
         return readActivities;
+    }
+
+    public int calculateTotalReadPages() {
+        return getReadActivities().stream()
+                                  .mapToInt(DayReadActivity::getReadPagesCount)
+                                  .sum();
+    }
+
+    public TimeSpan calculateTotalReadTime() {
+        return new TimeSpan(getReadActivities().stream()
+                                               .mapToInt(DayReadActivity::getTotalReadTimeInSeconds)
+                                               .sum());
     }
 }

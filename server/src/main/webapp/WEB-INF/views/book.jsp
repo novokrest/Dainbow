@@ -1,4 +1,4 @@
-<%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <%@ page session="false" %>
@@ -25,10 +25,12 @@
                     <sf:input path="totalPagesCount" class="form-control" type="number" placeholder="500" readonly="true" />
                 </div>
             </div>
+        </sf:form>
+        <sf:form commandName="readSummary">
             <div class="form-group row">
-                <sf:label path="readPagesCount" class="col-md-2 col-form-label">Read Pages</sf:label>
+                <sf:label path="totalReadPages" class="col-md-2 col-form-label">Read Pages</sf:label>
                 <div class="col-md-10">
-                    <sf:input path="readPagesCount" class="form-control" type="number" placeholder="351" readonly="true" />
+                    <sf:input path="totalReadPages" class="form-control" type="number" placeholder="351" readonly="true" />
                 </div>
             </div>
             <div class="form-group row">

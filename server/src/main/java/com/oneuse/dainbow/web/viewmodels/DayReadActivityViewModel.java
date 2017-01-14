@@ -18,7 +18,7 @@ public class DayReadActivityViewModel {
     public static DayReadActivityViewModel createFrom(DayReadActivity dayReadActivity) {
         String day = dayReadActivity.getDay().format(DateTimeFormatter.ISO_DATE);
         String pages = BookPagesEx.toString(dayReadActivity.getBookPages());
-        String totalReadTime = new TimeSpan(dayReadActivity.getTotalReadTime()).toString();
+        String totalReadTime = new TimeSpan(dayReadActivity.getTotalReadTimeInSeconds()).toString();
 
         return new DayReadActivityViewModel(day, pages, totalReadTime);
     }
