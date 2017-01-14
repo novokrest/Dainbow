@@ -1,0 +1,80 @@
+body {
+  padding-top: 10rem;
+}
+
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+p {
+    text-align: center;
+}
+
+input.form-control {
+  max-width: 300px;
+}
+
+.form-group > label {
+  text-align: right;
+}
+
+div.page {
+  padding: 5px;
+  height: 30px;
+}
+
+div.page div.content {
+  background-color: lightgray;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+span.showSign:before {
+  content: "\2295";
+}
+
+span.hideSign:after {
+  content: "\2296";
+}
+
+div.cover-viewer, div.input-sized {
+  padding: 15px 0 0 0;
+  max-width: 300px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+div.choose-cover {
+  max-width: 300px;
+}
+
+div.page div.content.read {
+    background-color: limegreen;
+    color: whitesmoke;
+}

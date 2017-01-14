@@ -1,0 +1,26 @@
+1. Main page with squares for choosing goal
+2. When click on goal, go to page dedicated for this goal.
+There are following information on goal’s page:
+ - history: list of entries. 
+   Each entry contains following information:
+     1. day timeSpan
+     2. event
+     3. rate?
+
+ - book section:
+   Main book page contains:
+     1. Current read books: title, goal (why read)
+     2. Saved for read
+        Books splitter by categories: IT, Communication, Art, Others
+        Priority
+     3. Already read books
+   Each book page contains following information:
+     1. day timeSpan
+     2. read page numbers (page range, page list)
+     3. read hours (minutes, seconds)
+     3. total page read
+     4. total page
+     5. total read timeSpan
+
+
+root@localhost: jwenF;adW5Aa

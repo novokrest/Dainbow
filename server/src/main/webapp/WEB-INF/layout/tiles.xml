@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="base" template="/WEB-INF/layout/page.jsp">
+        <put-attribute name="base-links" value="/WEB-INF/layout/base-links.jsp" />
+        <put-attribute name="extended-links" value="" />
+        <put-attribute name="navigation" value="/WEB-INF/layout/navigation.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="base-scripts" value="/WEB-INF/layout/base-scripts.jsp" />
+        <put-attribute name="extended-scripts" value="" />
+    </definition>
+
+    <definition name="book" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/book.jsp" />
+        <put-attribute name="extended-scripts" value="/WEB-INF/views/book-scripts.jsp" />
+    </definition>
+
+    <definition name="books" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/books.jsp" />
+    </definition>
+
+    <definition name="register" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/register.jsp" />
+        <put-attribute name="extended-scripts" value="/WEB-INF/views/register-scripts.jsp" />
+    </definition>
+
+    <definition name="error" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/error.jsp" />
+    </definition>
+</tiles-definitions>
