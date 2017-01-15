@@ -3,7 +3,7 @@ package com.oneuse.dainbow.init;
 import org.springframework.stereotype.Component;
 
 @Deprecated
-@Component
+//@Component
 public class HardCodedDatabasePropertiesProvider implements DatabaseConnectionPropertiesProvider {
 
     @Override

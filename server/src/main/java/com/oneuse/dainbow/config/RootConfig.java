@@ -5,10 +5,8 @@ import com.oneuse.dainbow.RootPackageMarker;
 import com.oneuse.dainbow.init.DatabaseConnectionProperties;
 import com.oneuse.dainbow.init.DatabaseConnectionPropertiesProvider;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -56,4 +54,24 @@ public class RootConfig {
     public LobHandler lobHandler() {
         return new DefaultLobHandler();
     }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfig() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Configuration
+    @Profile("prod")
+    @PropertySource("classpath:production.properties")
+    public static class ProdConfig { }
+
+    @Configuration
+    @Profile("dev")
+    @PropertySource("classpath:development.properties")
+    public static class DevConfig { }
+
+    @Configuration
+    @Profile("test")
+    @PropertySource("classpath:test.properties")
+    public static class TestConfig { }
 }
