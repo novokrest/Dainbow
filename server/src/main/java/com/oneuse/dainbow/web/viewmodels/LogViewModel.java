@@ -1,13 +1,14 @@
 package com.oneuse.dainbow.web.viewmodels;
 
 import com.oneuse.dainbow.BookPages;
+import com.oneuse.dainbow.LogReadActivityDTO;
 import com.oneuse.dainbow.ui.DateTimeFormatEx;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class LogViewModel {
+public class LogViewModel implements LogReadActivityDTO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate day;
 

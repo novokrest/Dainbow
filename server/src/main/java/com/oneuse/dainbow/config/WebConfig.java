@@ -11,10 +11,13 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import javax.servlet.ServletContext;
+import java.util.Properties;
 
 
 @EnableWebMvc
@@ -60,6 +63,23 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ServletContext
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+
+    public SimpleMappingExceptionResolver exceptionResolver() {
+        SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver();
+
+        Properties exceptionMappings = new Properties();
+        exceptionMappings.put("java.lang.Exception", "error/error");
+        exceptionMappings.put("java.lang.RuntimeException", "error/error");
+
+        exceptionResolver.setExceptionMappings(exceptionMappings);
+
+        Properties statusCodes = new Properties();
+        statusCodes.put("error/error", "500");
+
+        exceptionResolver.setStatusCodes(statusCodes);
+
+        return exceptionResolver;
     }
 
     @Override

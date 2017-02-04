@@ -1,6 +1,4 @@
-package com.oneuse.dainbow.init;
-
-import org.springframework.stereotype.Component;
+package com.oneuse.dainbow.storage;
 
 @Deprecated
 //@Component

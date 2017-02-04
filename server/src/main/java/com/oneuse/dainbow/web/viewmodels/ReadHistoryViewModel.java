@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 public class ReadHistoryViewModel {
     private final List<DayReadActivityViewModel> pages;
 
-    public static ReadHistoryViewModel create(ReadHistoryRepository repository, long bookId) {
-        ReadHistory readHistory = repository.findReadHistory(bookId);
+    public static ReadHistoryViewModel create(ReadHistory readHistory) {
         List<DayReadActivityViewModel> pagesViewModels = readHistory.getReadActivities()
                                                          .stream()
                                                          .map(DayReadActivityViewModel::createFrom)

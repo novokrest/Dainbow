@@ -2,14 +2,16 @@ package com.oneuse.dainbow.web.viewmodels;
 
 import com.oneuse.core.TimeSpan;
 import com.oneuse.dainbow.BookReadSummary;
+import com.oneuse.dainbow.BookService;
+import com.oneuse.dainbow.book.ReadHistory;
 import com.oneuse.dainbow.storage.ReadHistoryRepository;
 
 public class BookReadSummaryViewModel {
     private int totalReadPages;
     private TimeSpan totalReadTime;
 
-    public static BookReadSummaryViewModel create(ReadHistoryRepository repository, long bookId) {
-        BookReadSummary readSummary = BookReadSummary.createFrom(repository.findReadHistory(bookId));
+    public static BookReadSummaryViewModel create(ReadHistory readHistory) {
+        BookReadSummary readSummary = BookReadSummary.createFrom(readHistory);
         BookReadSummaryViewModel viewModel = new BookReadSummaryViewModel();
         viewModel.setTotalReadPages(readSummary.getReadPagesCount());
         viewModel.setTotalReadTime(readSummary.getTotalReadTime());

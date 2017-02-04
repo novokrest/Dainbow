@@ -1,4 +1,4 @@
-package com.oneuse.dainbow.core.parsers;
+package com.oneuse.core.parsers;
 
 import com.oneuse.core.CharIterator;
 import com.oneuse.core.parsers.CharTokenParser;

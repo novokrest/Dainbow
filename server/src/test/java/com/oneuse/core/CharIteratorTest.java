@@ -1,4 +1,4 @@
-package com.oneuse.dainbow.core;
+package com.oneuse.core;
 
 import com.oneuse.core.CharIterator;
 import org.junit.Assert;

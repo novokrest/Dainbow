@@ -1,4 +1,4 @@
-package com.oneuse.dainbow.init;
+package com.oneuse.dainbow.storage;
 
 
 public class DatabaseConnectionProperties {

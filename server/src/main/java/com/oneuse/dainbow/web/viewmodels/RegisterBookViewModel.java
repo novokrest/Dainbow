@@ -1,10 +1,12 @@
 package com.oneuse.dainbow.web.viewmodels;
 
+import com.oneuse.dainbow.BookDTO;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class RegisterBookViewModel {
+public class RegisterBookViewModel implements BookDTO {
     @NotNull
     @Size(min=1, message = "{title.size}")
     private String title;

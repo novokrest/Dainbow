@@ -1,4 +1,4 @@
-package com.oneuse.dainbow.core.time;
+package com.oneuse.core.time;
 
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;

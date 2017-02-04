@@ -1,4 +1,4 @@
-package com.oneuse.dainbow.init;
+package com.oneuse.dainbow.storage;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
