@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class DayReadActivity {
     private final LocalDate day;
     private final BookPages bookPages;
-    private final int totalReadTime;
+    private final int totalReadTimeSec;
 
-    public DayReadActivity(LocalDate day, BookPages bookPages, int totalReadTime) {
+    public DayReadActivity(LocalDate day, BookPages bookPages, int totalReadTimeSec) {
         this.day = day;
         this.bookPages = bookPages;
-        this.totalReadTime = totalReadTime;
+        this.totalReadTimeSec = totalReadTimeSec;
     }
 
     public LocalDate getDay() {
@@ -26,6 +26,6 @@ public class DayReadActivity {
     }
 
     public int getTotalReadTimeInSeconds() {
-        return totalReadTime;
+        return totalReadTimeSec;
     }
 }
