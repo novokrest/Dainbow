@@ -6,7 +6,7 @@ import com.oneuse.dainbow.builders.BookBuilder;
 import com.oneuse.dainbow.config.PersistenceConfig;
 import com.oneuse.dainbow.config.TestConfig;
 import com.oneuse.dainbow.config.WebConfig;
-import com.oneuse.dainbow.storage.ReadHistoryRepository;
+import com.oneuse.dainbow.exceptions.BookNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Arrays;
 
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -52,29 +51,50 @@ public class BookControllerTest {
 
     @Test
     public void test_ListBooks_Should_AddBooksToModelAndRenderBookListView() throws Exception {
-        Book book = new BookBuilder()
+        Book book1 = new BookBuilder()
                 .setTitle("title1")
                 .setAuthor("author1")
                 .setTotalPagesCount(100)
                 .setEmptyImage()
                 .build();
 
-        when(bookServiceMock.findAllBooks()).thenReturn(Arrays.asList(book));
+        Book book2 = new BookBuilder()
+                .setTitle("title2")
+                .setAuthor("author2")
+                .setTotalPagesCount(200)
+                .setEmptyImage()
+                .build();
+
+        when(bookServiceMock.findAllBooks()).thenReturn(Arrays.asList(book1, book2));
 
         mockMvc.perform(get("/books"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("books"))
                 .andExpect(model().attributeExists("bookList"))
-                .andExpect(model().attribute("bookList", hasSize(1)))
+                .andExpect(model().attribute("bookList", hasSize(2)))
                 .andExpect(model().attribute("bookList", hasItem(
                         allOf(
                                 hasProperty("title", equalTo("title1")),
                                 hasProperty("author", equalTo("author1")),
                                 hasProperty("totalPagesCount", is(100))
                         )
+                )))
+                .andExpect(model().attribute("bookList", hasItem(
+                        allOf(
+                                hasProperty("title", equalTo("title2")),
+                                hasProperty("author", equalTo("author2")),
+                                hasProperty("totalPagesCount", is(200))
+                        )
                 )));
 
         verify(bookServiceMock, times(1)).findAllBooks();
         verifyNoMoreInteractions(bookServiceMock);
+    }
+
+    @Test
+    public void test_When_TryGetBookWithNoExistentId_Should_Render404View() throws Exception {
+        when(bookServiceMock.findBook(1L)).thenThrow(BookNotFoundException.class);
+
+        mockMvc.perform(get("/books/1")).andExpect(status().isNotFound());
     }
 }

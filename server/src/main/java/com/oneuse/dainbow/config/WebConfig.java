@@ -65,17 +65,20 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ServletContext
         configurer.enable();
     }
 
+    @Bean
     public SimpleMappingExceptionResolver exceptionResolver() {
         SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver();
 
         Properties exceptionMappings = new Properties();
-        exceptionMappings.put("java.lang.Exception", "error/error");
-        exceptionMappings.put("java.lang.RuntimeException", "error/error");
+        exceptionMappings.put("com.oneuse.dainbow.exceptions.BookNotFoundException", "errors/404");
+        exceptionMappings.put("java.lang.Exception", "error");
+        exceptionMappings.put("java.lang.RuntimeException", "error");
 
         exceptionResolver.setExceptionMappings(exceptionMappings);
 
         Properties statusCodes = new Properties();
-        statusCodes.put("error/error", "500");
+        statusCodes.put("errors/404", "404");
+        statusCodes.put("error", "500");
 
         exceptionResolver.setStatusCodes(statusCodes);
 
