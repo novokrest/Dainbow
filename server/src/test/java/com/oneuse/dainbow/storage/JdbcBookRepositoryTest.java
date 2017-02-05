@@ -4,20 +4,25 @@ import com.oneuse.core.Verifiers;
 import com.oneuse.dainbow.Book;
 import com.oneuse.dainbow.BookUtils;
 import com.oneuse.dainbow.PageRange;
+import com.oneuse.dainbow.builders.BookBuilder;
+import com.oneuse.dainbow.config.PersistenceConfig;
 import com.oneuse.dainbow.config.RootConfig;
+import com.oneuse.dainbow.config.WebConfig;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.Assert;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class })
+@ContextConfiguration(classes = { RootConfig.class, PersistenceConfig.class, WebConfig.class})
+@WebAppConfiguration
 @ActiveProfiles({"test"})
 public class JdbcBookRepositoryTest {
     @Autowired
@@ -26,16 +31,32 @@ public class JdbcBookRepositoryTest {
     @Test
     public void testConnection() {
         Book book = repository.findOne(1);
-        Assert.notNull(book);
+        Assert.assertNotNull(book);
     }
 
     @Test
-    public void testAddingBook() {
+    public void test_AddBookWithAllInfo_Expect_BookAddedSuccessfully() {
         Book book = Book.createNewBook("Test Title", "Test Author", 345, BookUtils.defaultCoverImage());
         Book addedBook = repository.addBook(book);
-
+        repository.clearCache();
         Book foundBook = repository.findOne(addedBook.getId());
         Verifiers.verify(foundBook.equals(addedBook));
+    }
+
+    @Test
+    public void test_AddBookWithoutCover_Expect_BookAddedSuccessfully() {
+        Book book = new BookBuilder()
+                .setTitle("title1")
+                .setAuthor("author1")
+                .setTotalPagesCount(100)
+                .setCoverImage(null)
+                .build();
+
+        Book addedBook = repository.addBook(book);
+        repository.clearCache();
+        Book foundBook = repository.findOne(addedBook.getId());
+
+        Assert.assertEquals(addedBook, foundBook);
     }
 
     @Test
@@ -46,14 +67,31 @@ public class JdbcBookRepositoryTest {
         book.addReadPages(new PageRange(78, 90));
 
         Book addedBook = repository.addBook(book);
+        repository.clearCache();
         Book foundBook = repository.findOne(addedBook.getId());
 
-        Verifiers.verify(addedBook.equals(foundBook));
+        Assert.assertEquals(addedBook, foundBook);
+    }
+
+    @Test
+    public void test_FindBookWithoutCover_Expect_BookWithCoverEqualsToNull() {
+        Book book = new BookBuilder()
+                .setTitle("book1")
+                .setAuthor("author1")
+                .setTotalPagesCount(100)
+                .setCoverImage(null)
+                .build();
+
+        Book addedBook = repository.addBook(book);
+        repository.clearCache();
+        Book foundBook = repository.findOne(addedBook.getId());
+
+        Assert.assertNull(foundBook.getCoverImage());
     }
 
     @Test
     public void testFindAll() {
         List<Book> books = repository.findAll();
-        Assert.notEmpty(books);
+        Assert.assertNotNull(books);
     }
 }

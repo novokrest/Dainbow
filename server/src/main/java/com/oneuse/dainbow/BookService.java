@@ -1,26 +1,26 @@
 package com.oneuse.dainbow;
 
 import com.oneuse.core.Converter;
+import com.oneuse.core.DataUrlUtils;
 import com.oneuse.core.time.DayPeriod;
 import com.oneuse.dainbow.book.ReadHistory;
 import com.oneuse.dainbow.image.Image;
 import com.oneuse.dainbow.storage.BookRepository;
 import com.oneuse.dainbow.storage.ReadHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class BookService {
     private final BookRepository bookRepository;
-    private final BookCoverProvider bookCoverProvider;
     private final ReadHistoryRepository readHistoryRepository;
 
     @Autowired
     public BookService(BookRepository bookRepository,
-                       BookCoverProvider bookCoverProvider,
                        ReadHistoryRepository readHistoryRepository) {
         this.bookRepository = bookRepository;
-        this.bookCoverProvider = bookCoverProvider;
         this.readHistoryRepository = readHistoryRepository;
     }
 
@@ -32,11 +32,8 @@ public class BookService {
         return bookRepository.findOne(bookId);
     }
 
-    public Image findBookCover(long bookId) {
-        return bookCoverProvider.findCover(bookId);
-    }
-
-    public Book addBook(BookDTO book, Image cover) {
+    public Book addBook(BookDTO book) {
+        Image cover = DataUrlUtils.decode(book.getCoverBase64());
         Book newBook = Book.createNewBook(book.getTitle(), book.getAuthor(), book.getTotalPagesCount(), cover);
         return bookRepository.addBook(newBook);
     }
@@ -53,5 +50,9 @@ public class BookService {
 
     public ReadHistory findBookReadHistory(long bookId) {
         return readHistoryRepository.findReadHistory(bookId);
+    }
+
+    public Image findBookCover(long bookId) {
+        return bookRepository.findOne(bookId).getCoverImage();
     }
 }

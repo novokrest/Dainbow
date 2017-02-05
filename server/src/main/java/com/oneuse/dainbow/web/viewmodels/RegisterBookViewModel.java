@@ -3,20 +3,20 @@ package com.oneuse.dainbow.web.viewmodels;
 import com.oneuse.dainbow.BookDTO;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 public class RegisterBookViewModel implements BookDTO {
-    @NotNull
     @Size(min=1, message = "{title.size}")
     private String title;
 
-    @NotNull
     @Size(min=1, max=100, message = "{author.size}")
     private String author;
 
     @Min(value = 1, message = "{totalPagesCount.min}")
     private int totalPagesCount;
+
+    private String coverBase64;
 
     public void setTitle(String title) {
         this.title = title;
@@ -40,5 +40,13 @@ public class RegisterBookViewModel implements BookDTO {
 
     public int getTotalPagesCount() {
         return totalPagesCount;
+    }
+
+    public String getCoverBase64() {
+        return coverBase64;
+    }
+
+    public void setCoverBase64(String coverBase64) {
+        this.coverBase64 = coverBase64;
     }
 }

@@ -1,22 +1,22 @@
 package com.oneuse.dainbow.web;
 
 import com.oneuse.dainbow.Book;
+import com.oneuse.dainbow.BookCoverProvider;
 import com.oneuse.dainbow.BookService;
 import com.oneuse.dainbow.book.ReadHistory;
 import com.oneuse.dainbow.image.Image;
-import com.oneuse.dainbow.storage.ReadHistoryRepository;
-import com.oneuse.dainbow.web.extension.PartToImageConverter;
 import com.oneuse.dainbow.web.viewmodels.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
@@ -58,9 +58,14 @@ public class BookController {
         return "book";
     }
 
-    @RequestMapping(value = "/{bookId}/cover", method = RequestMethod.GET)
-    public void bookCover(@PathVariable long bookId, HttpServletResponse response) throws Exception {
+    @GetMapping("/{bookId}/cover")
+    public void bookCover(@PathVariable long bookId,
+                          HttpServletRequest request, HttpServletResponse response) throws Exception {
         Image bookCover = bookService.findBookCover(bookId);
+        if (bookCover == null) {
+            response.sendRedirect(request.getContextPath() + "/resources/img/book-cover.png");
+            return;
+        }
         response.setHeader("Cache-Control", "no-store");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
@@ -87,18 +92,17 @@ public class BookController {
     }
 
     @PostMapping("/register")
-    public String registerBookSubmit(@RequestPart("coverImage") Part coverPart,
-                                     @ModelAttribute("viewModel") @Valid RegisterBookViewModel viewModel,
-                                     BindingResult bindingResult, RedirectAttributes model) throws IOException {
+    public String registerBookSubmit(@ModelAttribute("viewModel") @Valid RegisterBookViewModel viewModel,
+                                     BindingResult bindingResult,
+                                     Model model, RedirectAttributes attributes) throws IOException {
         if (bindingResult.hasErrors()) {
             model.addAttribute("viewModel", viewModel);
             return "register";
         }
 
-        Image coverImage = PartToImageConverter.convert(coverPart);
-        Book registeredBook = bookService.addBook(viewModel, coverImage);
-        model.addAttribute("bookId", registeredBook.getId());
-        model.addFlashAttribute("book", BookViewModel.createFrom(registeredBook));
+        Book registeredBook = bookService.addBook(viewModel);
+        attributes.addAttribute("bookId", registeredBook.getId());
+        attributes.addFlashAttribute("book", BookViewModel.createFrom(registeredBook));
 
         return "redirect:/books/{bookId}";
     }

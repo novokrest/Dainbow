@@ -1,7 +1,10 @@
 package com.oneuse.dainbow;
 
 
+import com.google.common.collect.Iterables;
 import com.oneuse.dainbow.image.Image;
+
+import java.util.Comparator;
 
 public class Book extends DomainObject {
     private final String title;
@@ -9,6 +12,10 @@ public class Book extends DomainObject {
     private final int totalPagesCount;
     private final BookPages readPages;
     private final Image coverImage;
+
+    public static Book createNewBook(long id, String title, String author, int totalPagesCount, Image coverImage) {
+        return new Book(id, title, author, totalPagesCount, new BookPagesImpl(), coverImage);
+    }
 
     public static Book createNewBook(String title, String author, int totalPagesCount, Image coverImage) {
         return new Book(0, title, author, totalPagesCount, new BookPagesImpl(), coverImage);
@@ -57,7 +64,20 @@ public class Book extends DomainObject {
         return title.equals(other.title) &&
                author.equals(other.author) &&
                totalPagesCount == other.totalPagesCount &&
-               readPages.equals(other.readPages) &&
-               coverImage.equals(other.coverImage);
+               new BookPagesEqualityComparer().equals(readPages, other.readPages) &&
+               coverImage == null ? other.coverImage == null : coverImage.equals(other.coverImage);
     }
+
+    private static class BookPagesEqualityComparer {
+
+        public boolean equals(BookPages bp1, BookPages bp2) {
+            if (bp1 == null) {
+                return bp2 == null;
+            }
+
+            return bp1.getPagesCount() == bp2.getPagesCount() &&
+                   Iterables.elementsEqual(bp1.getPages(), bp2.getPages());
+        }
+    }
+
 }

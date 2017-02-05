@@ -5,10 +5,16 @@ import com.oneuse.dainbow.image.Image;
 import com.oneuse.dainbow.image.ImageType;
 
 public class BookBuilder {
+    private long id;
     private String title;
     private String author;
     private int totalPagesCount;
     private Image image;
+
+    public BookBuilder setId(long id) {
+        this.id = id;
+        return this;
+    }
 
     public BookBuilder setTitle(String title) {
         this.title = title;
@@ -25,12 +31,12 @@ public class BookBuilder {
         return this;
     }
 
-    public BookBuilder setEmptyImage() {
-        this.image = new Image(ImageType.JPEG, new byte[0]);
+    public BookBuilder setCoverImage(Image cover) {
+        this.image = cover;
         return this;
     }
 
     public Book build() {
-        return Book.createNewBook(title, author, totalPagesCount, image);
+        return Book.createNewBook(id, title, author, totalPagesCount, image);
     }
 }

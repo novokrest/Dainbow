@@ -4,20 +4,24 @@ import com.oneuse.core.time.DayPeriod;
 import com.oneuse.dainbow.BookPages;
 import com.oneuse.dainbow.BookPagesCreator;
 import com.oneuse.dainbow.ReadActivity;
+import com.oneuse.dainbow.config.PersistenceConfig;
 import com.oneuse.dainbow.config.RootConfig;
+import com.oneuse.dainbow.config.WebConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class })
+@ContextConfiguration(classes = { RootConfig.class, PersistenceConfig.class, WebConfig.class })
+@WebAppConfiguration
 @ActiveProfiles({"test"})
 public class JdbcReadHistoryRepositoryTest {
     @Autowired

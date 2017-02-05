@@ -27,15 +27,13 @@ public class DefaultBookCoverProvider implements BookCoverProvider {
     @Override
     public Image findCover(long bookId) {
         Image cover = bookRepository.findOne(bookId).getCoverImage();
-        if (cover == null) {
-            return loadDefaultCover();
-        }
         return cover;
     }
 
     private Image loadDefaultCover() {
         try {
             ByteArrayOutputStream imgOutputStream = new ByteArrayOutputStream();
+            String root = new File(".").getAbsolutePath();
             File bookCoverImgFile = new File(context.getRealPath("resources/img/book-cover.png"));
             BufferedImage bookCoverImg = ImageIO.read(bookCoverImgFile);
             ImageIO.write(bookCoverImg, "png", imgOutputStream);

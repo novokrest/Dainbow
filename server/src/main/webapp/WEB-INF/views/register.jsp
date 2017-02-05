@@ -1,7 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
-<%@ page session="false" %>
 <%@ page isELIgnored="false" %>
+<%@ page session="false" %>
+
 
 <h4>Register Book</h4>
 <hr />
@@ -36,12 +38,13 @@
                 <label class="input-group-btn">
                     <label class="btn btn-default btn-file">
                         Browse&hellip;
-                        <input name="coverImage" class="form-control" type="file" accept="image/gif, image/jpeg, image/png" />
+                        <input name="coverImage" class="form-control" type="file" accept="image/gif, image/jpeg, image/png" hidden />
                     </label>
                 </label>
             </div>
             <div class="cover-viewer">
-                <img src='<s:url value="/resources/img/book-cover.png" />' />
+                <img src='<c:out value="${viewModel.coverBase64}" />' />
+                <sf:hidden path="coverBase64" />
             </div>
         </div>
     </div>

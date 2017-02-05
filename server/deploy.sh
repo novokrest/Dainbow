@@ -11,7 +11,9 @@ if [ $# -gt 1 ]; then
     WEBAPP_NAME=$2
 fi
 
-TOMCAT_WEBAPPS=/Volumes/DATA/Tools/apache-tomcat-8.5.9/webapps
+TOMCAT=/Volumes/DATA/Tools/apache-tomcat-8.5.9
+TOMCAT_BIN=$TOMCAT/bin
+TOMCAT_WEBAPPS=$TOMCAT/webapps
 TOMCAT_WEBAPP_DIR=$TOMCAT_WEBAPPS/$WEBAPP_NAME
 TOMCAT_WEBAPP_WAR=$TOMCAT_WEBAPPS/$WEBAPP_NAME.war
 
@@ -36,7 +38,13 @@ echo "cleaned."
 echo "Copying $WAR_FILE_TO_DEPLOY -> $TOMCAT_WEBAPP_WAR..."
 cp $WAR_FILE_TO_DEPLOY $TOMCAT_WEBAPP_WAR
 
-until [ "`curl -I -s -L http://localhost:8080/dainbow/books/1 | grep 'HTTP/1.1 200'`" != "" ]; do
+#echo "Stopping tomcat"
+#$TOMCAT_BIN/shutdown.sh
+
+echo "Starting Tomcat"
+$TOMCAT_BIN/startup.sh
+
+until [ "`curl -I -s -L http://localhost:8080/dainbow/books | grep 'HTTP/1.1 200'`" != "" ]; do
     echo --- sleeping for 1 seconds
     sleep 1
 done

@@ -1,7 +1,7 @@
 package com.oneuse.dainbow.web;
 
-import com.mysql.cj.api.log.Log;
 import com.oneuse.dainbow.Book;
+import com.oneuse.dainbow.BookDTO;
 import com.oneuse.dainbow.BookService;
 import com.oneuse.dainbow.book.ReadHistory;
 import com.oneuse.dainbow.builders.BookBuilder;
@@ -10,7 +10,10 @@ import com.oneuse.dainbow.config.PersistenceConfig;
 import com.oneuse.dainbow.config.TestConfig;
 import com.oneuse.dainbow.config.WebConfig;
 import com.oneuse.dainbow.exceptions.BookNotFoundException;
+import com.oneuse.dainbow.image.Image;
+import com.oneuse.dainbow.image.ImageType;
 import com.oneuse.dainbow.web.viewmodels.LogViewModel;
+import com.oneuse.dainbow.web.viewmodels.RegisterBookViewModel;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +21,6 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.datetime.joda.LocalDateParser;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,6 +35,7 @@ import java.time.LocalTime;
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.*;
+import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -66,14 +69,14 @@ public class BookControllerTest {
                 .setTitle("title1")
                 .setAuthor("author1")
                 .setTotalPagesCount(100)
-                .setEmptyImage()
+                .setCoverImage(Image.empty(ImageType.JPEG))
                 .build();
 
         Book book2 = new BookBuilder()
                 .setTitle("title2")
                 .setAuthor("author2")
                 .setTotalPagesCount(200)
-                .setEmptyImage()
+                .setCoverImage(Image.empty(ImageType.JPEG))
                 .build();
 
         when(bookServiceMock.findAllBooks()).thenReturn(Arrays.asList(book1, book2));
@@ -164,5 +167,65 @@ public class BookControllerTest {
         Assert.assertThat(log.getBeginTime(), is(LocalTime.parse("11:00")));
         Assert.assertThat(log.getEndTime(), is(LocalTime.parse("12:00")));
         Assert.assertThat(log.getPages(), hasProperty("pagesCount", is(10)));
+    }
+
+    @Test
+    public void test_GetRegisterNewBookView_Should_ReturnRegisterView() throws Exception {
+        mockMvc.perform(get("/books/register"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("register"))
+                .andExpect(model().attributeExists("viewModel"));
+    }
+
+    @Test
+    public void test_TryRegisterNewValidBookWithoutCover_Should_AddBookAndRenderBookView() throws Exception {
+        Book addedBook = new BookBuilder()
+                .setId(1L)
+                .setTitle("title1")
+                .setAuthor("author1")
+                .setTotalPagesCount(100)
+                .build();
+
+        when(bookServiceMock.addBook(isA(BookDTO.class))).thenReturn(addedBook);
+
+        mockMvc.perform(post("/books/register")
+                .contentType(MediaType.MULTIPART_FORM_DATA)
+                .param("title", "title1")
+                .param("author", "author1")
+                .param("totalPagesCount", "100")
+                .sessionAttr("viewModel", new RegisterBookViewModel())
+            )
+                .andExpect(status().isFound())
+                .andExpect(view().name("redirect:/books/{bookId}"))
+                .andExpect(redirectedUrl("/books/1"))
+                .andExpect(model().attribute("bookId", is("1")));
+
+        ArgumentCaptor<RegisterBookViewModel> captor = ArgumentCaptor.forClass(RegisterBookViewModel.class);
+        verify(bookServiceMock, times(1)).addBook(captor.capture());
+
+        RegisterBookViewModel viewModel = captor.getValue();
+        Assert.assertThat(viewModel.getTitle(), equalTo("title1"));
+        Assert.assertThat(viewModel.getAuthor(), equalTo("author1"));
+        Assert.assertThat(viewModel.getTotalPagesCount(), equalTo(100));
+    }
+
+    @Test
+    public void test_TryRegisterBookWithInvalidData_Should_RenderRegisterBookViewAndReturnValidationErrors() throws Exception {
+        mockMvc.perform(post("/books/register")
+                .contentType(MediaType.MULTIPART_FORM_DATA)
+                .param("title", "")
+                .param("author", "")
+                .param("totalPagesCount", "-100")
+                .sessionAttr("viewModel", new RegisterBookViewModel())
+            )
+                .andExpect(status().isOk())
+                .andExpect(view().name("register"))
+                .andExpect(model().attributeExists("viewModel"))
+                .andExpect(model().attribute("viewModel", hasProperty("title", isEmptyOrNullString())))
+                .andExpect(model().attribute("viewModel", hasProperty("author", isEmptyOrNullString())))
+                .andExpect(model().attribute("viewModel", hasProperty("totalPagesCount", is(-100))))
+                .andExpect(model().attributeHasFieldErrors("viewModel", "title", "author", "totalPagesCount"));
+
+        verifyZeroInteractions(bookServiceMock);
     }
 }

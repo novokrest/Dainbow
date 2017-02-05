@@ -3,13 +3,14 @@ package com.oneuse.dainbow.config;
 import com.oneuse.dainbow.BookService;
 import com.oneuse.dainbow.storage.ReadHistoryRepository;
 import org.mockito.Mockito;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Configuration
+@ComponentScan(excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com\\.oneuse\\.dainbow\\.BookService")
+})
 @Profile("test")
 @PropertySource("classpath:test.properties")
 public class TestConfig {
@@ -25,7 +26,12 @@ public class TestConfig {
     }
 
     @Bean
-    public static PropertySourcesPlaceholderConfigurer propertyConfig() {
+    public PropertySourcesPlaceholderConfigurer propertyConfig() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Bean
+    public LocalValidatorFactoryBean localValidatorFactory() {
+        return new LocalValidatorFactoryBean();
     }
 }

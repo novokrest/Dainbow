@@ -6,6 +6,10 @@ public class Image {
     private final ImageType type;
     private final byte[] data;
 
+    public static Image empty(ImageType imageType) {
+        return new Image(imageType, new byte[0]);
+    }
+
     public Image(String mimeType, byte[] data) {
         this(ImageMimeTypes.toImageType(mimeType), data);
     }

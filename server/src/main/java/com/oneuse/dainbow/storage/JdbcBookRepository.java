@@ -41,6 +41,10 @@ public class JdbcBookRepository extends JdbcRepository implements BookRepository
         super(jdbcOperations, lobHandler, "Book");
     }
 
+    public void clearCache() {
+        books.clear();
+    }
+
     public List<Book> find(int count) {
         return jdbcOperations.query(SELECT_BOOKS_WITH_LIMIT, resultSet -> {
             int innerCount = count;
@@ -71,7 +75,8 @@ public class JdbcBookRepository extends JdbcRepository implements BookRepository
             return books.get(bookId);
         }
 
-        return jdbcOperations.queryForObject(SELECT_BOOK_BY_ID, (resultSet, rowNum) -> {
+        return jdbcOperations.query(SELECT_BOOK_BY_ID, (resultSet) -> {
+            Verifiers.verify(resultSet.next());
             return loadBook(resultSet);
         }, bookId);
     }
@@ -107,10 +112,13 @@ public class JdbcBookRepository extends JdbcRepository implements BookRepository
     }
 
     private Image loadCoverImage(long bookId) {
-        return jdbcOperations.queryForObject(SELECT_BOOK_COVER_BY_BOOK_ID, (resultSet, i) ->  {
-            byte[] data = lobHandler.getBlobAsBytes(resultSet, "Image");
-            ImageType type = ImageType.values()[resultSet.getInt("Type")];
-            return new Image(type, data);
+        return jdbcOperations.query(SELECT_BOOK_COVER_BY_BOOK_ID, (resultSet) ->  {
+            if (resultSet.next()) {
+                byte[] data = lobHandler.getBlobAsBytes(resultSet, "Image");
+                ImageType type = ImageType.values()[resultSet.getInt("Type")];
+                return new Image(type, data);
+            }
+            return null;
         }, bookId);
     }
 
@@ -147,6 +155,8 @@ public class JdbcBookRepository extends JdbcRepository implements BookRepository
     }
 
     private void addCoverImage(long bookId, Image coverImage) {
+        if (coverImage == null) return;
+
         jdbcOperations.execute(INSERT_BOOK_COVER, new AbstractLobCreatingPreparedStatementCallback(lobHandler) {
             @Override
             protected void setValues(PreparedStatement preparedStatement, LobCreator lobCreator)
