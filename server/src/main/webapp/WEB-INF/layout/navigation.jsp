@@ -1,3 +1,7 @@
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ page session="false" %>
+<%@ page isELIgnored="false" %>
+
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -6,7 +10,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="#">Books</a>
+                    <a href='<s:url value="/books" />'>Books</a>
                 </li>
                 <li>
                     <a href="#about">About</a>
