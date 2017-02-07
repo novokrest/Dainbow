@@ -36,6 +36,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-        servletContext.setInitParameter("spring.profiles.default", "dev");
+        servletContext.setInitParameter("spring.profiles.default", "prod");
     }
 }
