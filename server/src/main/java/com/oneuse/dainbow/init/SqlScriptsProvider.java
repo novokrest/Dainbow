@@ -58,6 +58,10 @@ public class SqlScriptsProvider {
                         "                 \"Scott Chacon, Ben Straub\",\n" +
                         "                 574)",
 
+                "INSERT INTO BookPages (BookId, BeginPage, EndPage) VALUES (1, 1, 10)",
+                "INSERT INTO BookPages (BookId, BeginPage, EndPage) VALUES (2, 20, 30)",
+                "INSERT INTO BookPages (BookId, BeginPage, EndPage) VALUES (2, 43, 58)",
+
                 "INSERT INTO ReadHistory VALUES (1, '2016-12-15', '12:01:02', '13:04:02', 1, 10)",
                 "INSERT INTO ReadHistory VALUES (2, '2016-12-16', '14:10:30', '15:11:20', 20, 30)",
                 "INSERT INTO ReadHistory VALUES (2, '2016-12-17', '15:10:30', '15:40:20', 43, 58)",
