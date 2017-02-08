@@ -45,12 +45,12 @@ public class BookViewModel {
 
         BookPages readPages = book.getReadPages();
         for (Integer pageNumber: readPages.getPages()) {
-            result.set(pageNumber, new PageViewModel(pageNumber, true));
+            result.set(pageNumber - 1, new PageViewModel(pageNumber, true));
         }
 
-        for (int pageNumber = 0, count = result.size(); pageNumber < count; ++pageNumber) {
-            if (result.get(pageNumber) == null) {
-                result.set(pageNumber, new PageViewModel(pageNumber, false));
+        for (int pageNumber = 1, count = result.size(); pageNumber <= count; ++pageNumber) {
+            if (result.get(pageNumber - 1) == null) {
+                result.set(pageNumber - 1, new PageViewModel(pageNumber, false));
             }
         }
 
