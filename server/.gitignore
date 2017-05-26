@@ -3,3 +3,4 @@ tmp/
 examples/
 .idea/
 ._*
+*.iml
