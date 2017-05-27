@@ -13,6 +13,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <spring.version>4.0.3.RELEASE</spring.version>
+        <jersey.version>2.9</jersey.version>
+        <jackson.version>1.9.13</jackson.version>
+        <hibernate.version>4.2.7.Final</hibernate.version>
+        <logback.version>1.1.1</logback.version>
+        <jcloverslf4j.version>1.7.6</jcloverslf4j.version>
     </properties>
 
     <build>
@@ -44,6 +50,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.3.5.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -137,9 +149,14 @@
         </dependency>
 
         <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.22</version>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${jcloverslf4j.version}</version>
         </dependency>
 
         <dependency>
