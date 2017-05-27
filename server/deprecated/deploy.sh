@@ -11,7 +11,7 @@ if [ $# -gt 1 ]; then
     WEBAPP_NAME=$2
 fi
 
-TOMCAT=/Volumes/DATA/Tools/apache-tomcat-8.5.9
+TOMCAT=/c/tools/apache-tomcat-8.5.15
 TOMCAT_BIN=$TOMCAT/bin
 TOMCAT_WEBAPPS=$TOMCAT/webapps
 TOMCAT_WEBAPP_DIR=$TOMCAT_WEBAPPS/$WEBAPP_NAME
