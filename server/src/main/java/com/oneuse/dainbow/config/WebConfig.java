@@ -20,44 +20,14 @@ import javax.servlet.ServletContext;
 import java.util.Properties;
 
 
-@EnableWebMvc
 @Configuration
 @ComponentScan(basePackageClasses = WebPackageMarker.class)
 public class WebConfig extends WebMvcConfigurerAdapter implements ServletContextAware {
     private ServletContext servletContext;
 
-//    @Bean
-//    public ViewResolver viewResolver() {
-//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//        viewResolver.setPrefix("/WEB-INF/views/");
-//        viewResolver.setSuffix(".jsp");
-//        viewResolver.setExposeContextBeansAsAttributes(true);
-//        return viewResolver;
-//    }
-
-    @Bean
-    public ViewResolver viewResolver() {
-        return new TilesViewResolver();
-    }
-
-    @Bean
-    public TilesConfigurer tilesConfigurer() {
-        TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[] {
-                "WEB-INF/layout/tiles.xml"
-        });
-        tilesConfigurer.setCheckRefresh(true);
-        return tilesConfigurer;
-    }
-
     @Bean
     public ServletContext servletContext() {
         return servletContext;
-    }
-
-    @Bean
-    public MultipartResolver multipartResolver() {
-        return new StandardServletMultipartResolver();
     }
 
     @Override

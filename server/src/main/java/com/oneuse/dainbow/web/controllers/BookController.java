@@ -1,4 +1,4 @@
-package com.oneuse.dainbow.web;
+package com.oneuse.dainbow.web.controllers;
 
 import com.oneuse.dainbow.Book;
 import com.oneuse.dainbow.BookCoverProvider;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequestMapping("/books")
 public class BookController {
     private final BookService bookService;
