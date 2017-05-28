@@ -1,6 +1,7 @@
 target/
 tmp/
 examples/
+logs/
 .idea/
 ._*
 *.iml
