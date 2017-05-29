@@ -1,7 +1,7 @@
 package com.oneuse.dainbow.books.storage;
 
-import com.oneuse.dainbow.books.Book;
-import com.oneuse.dainbow.books.BookPages;
+import com.oneuse.dainbow.books.domain.Book;
+import com.oneuse.dainbow.books.domain.BookPages;
 
 import java.util.List;
 

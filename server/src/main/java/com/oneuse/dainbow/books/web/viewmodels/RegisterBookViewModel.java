@@ -1,6 +1,6 @@
 package com.oneuse.dainbow.books.web.viewmodels;
 
-import com.oneuse.dainbow.books.BookDTO;
+import com.oneuse.dainbow.books.dto.BookDTO;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;

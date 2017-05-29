@@ -1,7 +1,7 @@
 package com.oneuse.dainbow.books.builders;
 
 import com.oneuse.core.Verifiers;
-import com.oneuse.dainbow.books.ReadActivity;
+import com.oneuse.dainbow.books.domain.ReadActivity;
 import com.oneuse.dainbow.books.domain.ReadHistory;
 
 import java.util.ArrayList;

@@ -1,9 +1,7 @@
 package com.oneuse.dainbow.books.domain;
 
 import com.oneuse.core.TimeSpan;
-import com.oneuse.dainbow.books.DayReadActivity;
-import com.oneuse.dainbow.books.ReadActivity;
-import com.oneuse.dainbow.books.ReadActivityPerDayCalculator;
+import com.oneuse.dainbow.books.services.ReadActivityPerDayCalculator;
 
 import java.util.List;
 

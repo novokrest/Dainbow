@@ -1,8 +1,8 @@
 package com.oneuse.dainbow.books.web.viewmodels;
 
 import com.oneuse.core.TimeSpan;
-import com.oneuse.dainbow.books.BookPagesEx;
-import com.oneuse.dainbow.books.DayReadActivity;
+import com.oneuse.dainbow.books.extensions.BookPagesEx;
+import com.oneuse.dainbow.books.domain.DayReadActivity;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;

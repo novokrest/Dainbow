@@ -1,6 +1,6 @@
 package com.oneuse.dainbow.books.storage;
 
-import com.oneuse.dainbow.books.DatePeriod;
+import com.oneuse.dainbow.books.domain.DatePeriod;
 import java.util.Date;
 
 public class LoggedPagesEntry {

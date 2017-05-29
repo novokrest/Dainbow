@@ -1,8 +1,7 @@
 package com.oneuse.dainbow.books.builders;
 
-import com.oneuse.dainbow.books.Book;
+import com.oneuse.dainbow.books.domain.Book;
 import com.oneuse.dainbow.books.image.Image;
-import com.oneuse.dainbow.books.image.ImageType;
 
 public class BookBuilder {
     private long id;

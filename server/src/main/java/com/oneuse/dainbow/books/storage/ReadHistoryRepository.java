@@ -1,6 +1,6 @@
 package com.oneuse.dainbow.books.storage;
 
-import com.oneuse.dainbow.books.ReadActivity;
+import com.oneuse.dainbow.books.domain.ReadActivity;
 import com.oneuse.dainbow.books.domain.ReadHistory;
 
 public interface ReadHistoryRepository {

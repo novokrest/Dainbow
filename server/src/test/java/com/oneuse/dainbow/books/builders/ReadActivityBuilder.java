@@ -1,7 +1,11 @@
 package com.oneuse.dainbow.books.builders;
 
 import com.oneuse.core.time.DayPeriod;
-import com.oneuse.dainbow.books.*;
+import com.oneuse.dainbow.books.domain.BookPages;
+import com.oneuse.dainbow.books.domain.BookPagesImpl;
+import com.oneuse.dainbow.books.domain.ReadActivity;
+import com.oneuse.dainbow.books.extensions.BookPagesEx;
+import com.oneuse.dainbow.books.services.BookPagesParser;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

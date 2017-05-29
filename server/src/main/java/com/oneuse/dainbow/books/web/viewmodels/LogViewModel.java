@@ -1,8 +1,8 @@
 package com.oneuse.dainbow.books.web.viewmodels;
 
-import com.oneuse.dainbow.books.BookPages;
-import com.oneuse.dainbow.books.LogReadActivityDTO;
-import com.oneuse.dainbow.books.ui.DateTimeFormatEx;
+import com.oneuse.dainbow.books.domain.BookPages;
+import com.oneuse.dainbow.books.dto.LogReadActivityDTO;
+import com.oneuse.dainbow.books.extensions.DateTimeFormatEx;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;

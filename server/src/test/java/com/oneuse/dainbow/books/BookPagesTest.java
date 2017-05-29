@@ -1,9 +1,9 @@
 package com.oneuse.dainbow.books;
 
 import com.oneuse.core.CollectionEx;
-import com.oneuse.dainbow.books.BookPagesEx;
-import com.oneuse.dainbow.books.BookPagesImpl;
-import com.oneuse.dainbow.books.PageRange;
+import com.oneuse.dainbow.books.domain.BookPagesImpl;
+import com.oneuse.dainbow.books.domain.PageRange;
+import com.oneuse.dainbow.books.extensions.BookPagesEx;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @ControllerAdvice
 public class WebAppWideExceptionHandler {
+
     @ExceptionHandler(Exception.class)
     public String runtimeExceptionHandler(Exception ex, Model model, HttpServletResponse response) {
         model.addAttribute("exception", ex);

@@ -1,7 +1,7 @@
 package com.oneuse.dainbow.books.web.viewmodels;
 
 import com.oneuse.core.TimeSpan;
-import com.oneuse.dainbow.books.BookReadSummary;
+import com.oneuse.dainbow.books.domain.BookReadSummary;
 import com.oneuse.dainbow.books.domain.ReadHistory;
 
 public class BookReadSummaryViewModel {

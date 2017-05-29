@@ -1,6 +1,6 @@
 package com.oneuse.dainbow.books.web;
 
-import com.oneuse.dainbow.books.BookPages;
+import com.oneuse.dainbow.books.domain.BookPages;
 import com.oneuse.dainbow.books.web.bindings.BookPagesPropertyEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;

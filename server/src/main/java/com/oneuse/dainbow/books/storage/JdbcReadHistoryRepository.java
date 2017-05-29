@@ -1,10 +1,10 @@
 package com.oneuse.dainbow.books.storage;
 
 import com.oneuse.core.time.DayPeriod;
-import com.oneuse.dainbow.books.BookPages;
-import com.oneuse.dainbow.books.BookPagesCreator;
-import com.oneuse.dainbow.books.PageRange;
-import com.oneuse.dainbow.books.ReadActivity;
+import com.oneuse.dainbow.books.domain.BookPages;
+import com.oneuse.dainbow.books.services.BookPagesCreator;
+import com.oneuse.dainbow.books.domain.PageRange;
+import com.oneuse.dainbow.books.domain.ReadActivity;
 import com.oneuse.dainbow.books.domain.ReadHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;

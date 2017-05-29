@@ -1,6 +1,6 @@
 package com.oneuse.dainbow.books.web;
 
-import com.oneuse.dainbow.books.BookCoverProvider;
+import com.oneuse.dainbow.books.services.BookCoverProvider;
 import com.oneuse.dainbow.books.image.Image;
 import com.oneuse.dainbow.books.image.ImageType;
 import com.oneuse.dainbow.books.storage.JdbcBookRepository;

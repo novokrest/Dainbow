@@ -1,8 +1,8 @@
 package com.oneuse.dainbow.books.web;
 
-import com.oneuse.dainbow.books.Book;
-import com.oneuse.dainbow.books.BookDTO;
-import com.oneuse.dainbow.books.BookService;
+import com.oneuse.dainbow.books.domain.Book;
+import com.oneuse.dainbow.books.dto.BookDTO;
+import com.oneuse.dainbow.books.services.BookService;
 import com.oneuse.dainbow.books.domain.ReadHistory;
 import com.oneuse.dainbow.books.builders.BookBuilder;
 import com.oneuse.dainbow.books.builders.ReadHistoryBuilder;

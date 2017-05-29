@@ -1,7 +1,7 @@
 package com.oneuse.dainbow.books.web.bindings;
 
-import com.oneuse.dainbow.books.BookPagesImpl;
-import com.oneuse.dainbow.books.BookPagesParser;
+import com.oneuse.dainbow.books.domain.BookPagesImpl;
+import com.oneuse.dainbow.books.services.BookPagesParser;
 
 import java.beans.PropertyEditorSupport;
 

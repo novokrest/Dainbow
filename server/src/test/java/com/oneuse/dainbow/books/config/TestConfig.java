@@ -1,6 +1,6 @@
 package com.oneuse.dainbow.books.config;
 
-import com.oneuse.dainbow.books.BookService;
+import com.oneuse.dainbow.books.services.BookService;
 import com.oneuse.dainbow.books.storage.ReadHistoryRepository;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.*;

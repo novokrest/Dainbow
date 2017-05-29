@@ -1,8 +1,8 @@
 package com.oneuse.dainbow.books.builders;
 
-import com.oneuse.dainbow.books.BookPages;
-import com.oneuse.dainbow.books.BookPagesParser;
-import com.oneuse.dainbow.books.DayReadActivity;
+import com.oneuse.dainbow.books.domain.BookPages;
+import com.oneuse.dainbow.books.services.BookPagesParser;
+import com.oneuse.dainbow.books.domain.DayReadActivity;
 
 import java.time.LocalDate;
 

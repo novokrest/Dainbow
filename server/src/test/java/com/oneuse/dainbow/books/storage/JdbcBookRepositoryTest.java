@@ -1,9 +1,9 @@
 package com.oneuse.dainbow.books.storage;
 
 import com.oneuse.core.Verifiers;
-import com.oneuse.dainbow.books.Book;
-import com.oneuse.dainbow.books.BookUtils;
-import com.oneuse.dainbow.books.PageRange;
+import com.oneuse.dainbow.books.domain.Book;
+import com.oneuse.dainbow.books.utils.BookUtils;
+import com.oneuse.dainbow.books.domain.PageRange;
 import com.oneuse.dainbow.books.builders.BookBuilder;
 import com.oneuse.dainbow.books.config.PersistenceConfig;
 import com.oneuse.dainbow.books.config.RootConfig;

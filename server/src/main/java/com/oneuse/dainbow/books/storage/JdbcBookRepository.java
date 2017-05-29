@@ -1,10 +1,10 @@
 package com.oneuse.dainbow.books.storage;
 
 import com.oneuse.core.Verifiers;
-import com.oneuse.dainbow.books.Book;
-import com.oneuse.dainbow.books.BookPages;
-import com.oneuse.dainbow.books.BookPagesImpl;
-import com.oneuse.dainbow.books.PageRange;
+import com.oneuse.dainbow.books.domain.Book;
+import com.oneuse.dainbow.books.domain.BookPages;
+import com.oneuse.dainbow.books.domain.BookPagesImpl;
+import com.oneuse.dainbow.books.domain.PageRange;
 import com.oneuse.dainbow.books.image.Image;
 import com.oneuse.dainbow.books.image.ImageType;
 import org.springframework.beans.factory.annotation.Autowired;

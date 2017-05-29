@@ -1,8 +1,8 @@
 package com.oneuse.dainbow.books.web.viewmodels;
 
-import com.oneuse.dainbow.books.Book;
-import com.oneuse.dainbow.books.BookPages;
-import com.oneuse.dainbow.books.PageRangeEx;
+import com.oneuse.dainbow.books.domain.Book;
+import com.oneuse.dainbow.books.domain.BookPages;
+import com.oneuse.dainbow.books.extensions.PageRangeEx;
 
 import java.util.ArrayList;
 import java.util.Collections;

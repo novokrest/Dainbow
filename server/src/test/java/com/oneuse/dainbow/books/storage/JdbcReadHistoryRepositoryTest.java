@@ -1,9 +1,9 @@
 package com.oneuse.dainbow.books.storage;
 
 import com.oneuse.core.time.DayPeriod;
-import com.oneuse.dainbow.books.BookPages;
-import com.oneuse.dainbow.books.BookPagesCreator;
-import com.oneuse.dainbow.books.ReadActivity;
+import com.oneuse.dainbow.books.domain.BookPages;
+import com.oneuse.dainbow.books.services.BookPagesCreator;
+import com.oneuse.dainbow.books.domain.ReadActivity;
 import com.oneuse.dainbow.books.config.PersistenceConfig;
 import com.oneuse.dainbow.books.config.RootConfig;
 import com.oneuse.dainbow.books.config.WebConfig;
