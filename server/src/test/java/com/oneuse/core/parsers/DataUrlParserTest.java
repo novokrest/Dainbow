@@ -2,7 +2,7 @@ package com.oneuse.core.parsers;
 
 import com.oneuse.core.ByteArrayEx;
 import com.oneuse.core.DataUrlUtils;
-import com.oneuse.dainbow.image.ImageType;
+import com.oneuse.dainbow.books.image.ImageType;
 import org.junit.Assert;
 import org.junit.Test;
 

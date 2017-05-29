@@ -1,9 +1,9 @@
 package com.oneuse.core;
 
 import com.oneuse.core.parsers.DataUrlParser;
-import com.oneuse.dainbow.image.Image;
-import com.oneuse.dainbow.image.ImageMimeTypes;
-import com.oneuse.dainbow.image.ImageType;
+import com.oneuse.dainbow.books.image.Image;
+import com.oneuse.dainbow.books.image.ImageMimeTypes;
+import com.oneuse.dainbow.books.image.ImageType;
 
 import java.util.Base64;
 

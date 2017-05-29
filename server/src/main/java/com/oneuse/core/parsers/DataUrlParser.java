@@ -1,7 +1,7 @@
 package com.oneuse.core.parsers;
 
-import com.oneuse.dainbow.image.ImageMimeTypes;
-import com.oneuse.dainbow.image.ImageType;
+import com.oneuse.dainbow.books.image.ImageMimeTypes;
+import com.oneuse.dainbow.books.image.ImageType;
 import org.springframework.util.Base64Utils;
 
 import java.util.regex.Matcher;
