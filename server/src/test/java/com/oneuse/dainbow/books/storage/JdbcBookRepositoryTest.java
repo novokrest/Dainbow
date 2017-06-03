@@ -36,7 +36,7 @@ public class JdbcBookRepositoryTest {
 
     @Test
     public void test_AddBookWithAllInfo_Expect_BookAddedSuccessfully() {
-        Book book = Book.createNewBook("Test Title", "Test Author", 345, BookUtils.defaultCoverImage());
+        Book book = Book.of("Test Title", "Test Author", 345, BookUtils.defaultCoverImage());
         Book addedBook = repository.addBook(book);
         repository.clearCache();
         Book foundBook = repository.findOne(addedBook.getId());

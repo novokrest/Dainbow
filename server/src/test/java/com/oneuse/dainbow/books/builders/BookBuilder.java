@@ -36,6 +36,6 @@ public class BookBuilder {
     }
 
     public Book build() {
-        return Book.createNewBook(id, title, author, totalPagesCount, image);
+        return Book.of(id, title, author, totalPagesCount, image);
     }
 }

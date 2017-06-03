@@ -2,6 +2,8 @@ target/
 tmp/
 examples/
 logs/
+node_modules/
+**/built/
 .idea/
 ._*
 *.iml

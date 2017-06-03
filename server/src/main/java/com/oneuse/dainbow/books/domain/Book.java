@@ -11,11 +11,15 @@ public class Book extends DomainObject {
     private final BookPages readPages;
     private final Image coverImage;
 
-    public static Book createNewBook(long id, String title, String author, int totalPagesCount, Image coverImage) {
+    public static Book of(long id, String title, String author, int totalPagesCount) {
+        return new Book(id, title, author, totalPagesCount, new BookPagesImpl(), null);
+    }
+
+    public static Book of(long id, String title, String author, int totalPagesCount, Image coverImage) {
         return new Book(id, title, author, totalPagesCount, new BookPagesImpl(), coverImage);
     }
 
-    public static Book createNewBook(String title, String author, int totalPagesCount, Image coverImage) {
+    public static Book of(String title, String author, int totalPagesCount, Image coverImage) {
         return new Book(0, title, author, totalPagesCount, new BookPagesImpl(), coverImage);
     }
 

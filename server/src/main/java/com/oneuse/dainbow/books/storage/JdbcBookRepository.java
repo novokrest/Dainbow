@@ -22,7 +22,7 @@ import java.util.*;
 
 
 @Repository
-public class JdbcBookRepository extends JdbcRepository implements BookRepository {
+public class  JdbcBookRepository extends JdbcRepository implements BookRepository {
     private static final String SELECT_ALL_BOOKS = "SELECT Id, Title, Author, TotalPages FROM book";
     private static final String SELECT_BOOKS_WITH_LIMIT = "SELECT Id, Title, Author, TotalPages FROM book LIMIT ?";
     private static final String SELECT_BOOK_BY_ID = "SELECT Id, Title, Author, TotalPages FROM book WHERE Id = ?";

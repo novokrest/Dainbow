@@ -1,9 +1,9 @@
 package com.oneuse.dainbow.books.web.controllers;
 
 import com.oneuse.dainbow.books.domain.Book;
-import com.oneuse.dainbow.books.services.BookService;
 import com.oneuse.dainbow.books.domain.ReadHistory;
 import com.oneuse.dainbow.books.image.Image;
+import com.oneuse.dainbow.books.services.BookService;
 import com.oneuse.dainbow.books.web.viewmodels.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -20,8 +20,9 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/manual/books")
 public class BookController {
+
     private final BookService bookService;
 
     @Autowired
