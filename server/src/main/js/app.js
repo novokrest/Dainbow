@@ -59,11 +59,18 @@ class Books extends React.Component {
 
 class Book extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { defaultCoverImgSrc: "http://freedesignfile.com/upload/2015/06/Brochure-and-book-cover-creative-vector-06.jpg" }
+    }
+
     render() {
+        var book = this.props.book;
+        var imgSrc = book.coverImage ? 'data:image/jpg;base64, ' + book.coverImage : this.state.defaultCoverImgSrc;
         return (
             <div className="book card">
                 <img className="card-img-top" width="100%"
-                     src="http://freedesignfile.com/upload/2015/06/Brochure-and-book-cover-creative-vector-06.jpg"
+                     src={imgSrc}
                      alt="cover" />
                 <div className="card-block">
                     <h4 className="card-title">{this.props.book.title}</h4>

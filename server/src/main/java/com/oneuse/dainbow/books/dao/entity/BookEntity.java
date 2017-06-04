@@ -1,7 +1,5 @@
 package com.oneuse.dainbow.books.dao.entity;
 
-import org.springframework.data.rest.core.annotation.RestResource;
-
 import javax.persistence.*;
 
 
@@ -21,12 +19,22 @@ public class BookEntity {
     @Column(name = "pages_count")
     private int pagesCount;
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "cover_img")
+    private String coverImage;
+
     private BookEntity() { }
 
     public BookEntity(String title, String author, int pagesCount) {
+        this(title, author, pagesCount, null);
+    }
+
+    public BookEntity(String title, String author, int pagesCount, String coverImage) {
         this.title = title;
         this.author = author;
         this.pagesCount = pagesCount;
+        this.coverImage = coverImage;
     }
 
     public Long getId() {
@@ -59,5 +67,13 @@ public class BookEntity {
 
     public void setPagesCount(int pagesCount) {
         this.pagesCount = pagesCount;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
     }
 }
