@@ -64,7 +64,7 @@ class Books extends React.Component {
         console.log('DEV', 'Books', 'chunked books =', chunkedBooks)
 
         var rows = chunkedBooks.map((chunk, i) =>
-            <div key={i} className="row top-buffer bottom-buffer">
+            <div key={i} className="book-row row top-buffer bottom-buffer">
                 {chunk}
             </div>
         );

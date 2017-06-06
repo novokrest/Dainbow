@@ -6,6 +6,24 @@
     margin-bottom: 40px;
 }
 
+.book-row {
+    font-size: 0;
+}
+
+.book-row > * {
+    float: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.book-row > *:last-child {
+    vertical-align: bottom;
+}
+
+.book-row p:last-child {
+    margin-bottom: 0;
+}
+
 .book {
 }
 
