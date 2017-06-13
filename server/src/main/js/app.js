@@ -108,7 +108,7 @@ class Book extends React.Component {
 
     renderProgressBar() {
         var totalPagesCount = this.props.book.pagesCount,
-            readPagesCount = this.props.readProgress.readPagesCount;
+            readPagesCount = this.props.readProgress ? this.props.readProgress.readPagesCount : 0;
 
         var readPercent = Math.floor(readPagesCount / totalPagesCount * 100);
         var progressBarType = readPercent < 25 ? 'progress-bar-danger'
