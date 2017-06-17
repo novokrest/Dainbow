@@ -15,22 +15,16 @@ class App extends React.Component {
     componentDidMount() {
         client({method: 'GET', path: '/api/auto/books'}).done(response => {
             var books = response.entity._embedded.books;
-            client({method: 'GET', path: '/api/auto/progress'}).done(response => {
-                var readProgresses = response.entity._embedded.progress.reduce((res, readProgress) => {
-                    console.log('App: client: before', res, readProgress);
-                    res[readProgress.bookId] = readProgress;
-                    return res;
-                }, {});
-                console.log('App: client: readProgresses', readProgresses, response.entity._embedded.progress);
-                this.setState({books: books, readProgresses: readProgresses});
-            });
-
+            var readProgresses = books.reduce((res, book) => {
+                res[book.id] = book.readProgress;
+                return res;
+            }, {});
+            this.setState({books: books, readProgresses: readProgresses});
         });
 
     }
 
     render() {
-        console.log('App: readProgresses', this.state.readProgresses, this.state.books);
         return (
             <Books books={this.state.books} readProgresses={this.state.readProgresses}/>
         );
@@ -45,23 +39,14 @@ class Books extends React.Component {
     }
 
     render() {
-        console.log('Books: readProgresses', this.props.readProgresses);
-        if (this.props.books.length > 0) {
-            var book1 = this.props.books[0];
-            var progress1 = this.props.readProgresses[book1.id];
-            console.log('Books: book1: ', book1, progress1);
-
-        }
         var books = this.props.books.map(book =>
             <div key={book._links.self.href} className={this.state.columnClass}>
                 <Book book={book} readProgress={this.props.readProgresses[book.id]}/>
             </div>
         );
-        var rowsCount = Math.floor(books.length / this.state.booksPerRow) + (books.length % this.state.booksPerRow ? 1 : 0);
-        console.log('DEV', "Books", 'rows =', rowsCount);
 
+        var rowsCount = Math.floor(books.length / this.state.booksPerRow) + (books.length % this.state.booksPerRow ? 1 : 0);
         var chunkedBooks = utils.toChunks(books, this.state.booksPerRow);
-        console.log('DEV', 'Books', 'chunked books =', chunkedBooks)
 
         var rows = chunkedBooks.map((chunk, i) =>
             <div key={i} className="book-row row top-buffer bottom-buffer">
@@ -84,7 +69,6 @@ class Book extends React.Component {
     }
 
     render() {
-        console.log('Book: readProgress', this.props.readProgress);
         var book = this.props.book, readProgress = this.props.readProgress;
         var imgSrc = book.coverImage ? 'data:image/jpg;base64, ' + book.coverImage : this.state.defaultCoverImgSrc;
         return (
@@ -107,7 +91,7 @@ class Book extends React.Component {
     }
 
     renderProgressBar() {
-        var totalPagesCount = this.props.book.pagesCount,
+        var totalPagesCount = this.props.book.totalPagesCount,
             readPagesCount = this.props.readProgress ? this.props.readProgress.readPagesCount : 0;
 
         var readPercent = Math.floor(readPagesCount / totalPagesCount * 100);

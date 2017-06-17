@@ -1,9 +1,8 @@
 package com.oneuse.dainbow.books.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 
 @Entity(name = "book_read_progress")
 public class BookReadProgressEntity {
@@ -11,22 +10,17 @@ public class BookReadProgressEntity {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Long id;
-
-    @Column(name = "book_id")
-    private Long bookId;
+    private long id;
 
     @Column(name = "read_pages_count")
-    private Long readPagesCount;
+    private int readPagesCount;
 
-    private BookReadProgressEntity() { }
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private BookEntity book;
 
-    public BookReadProgressEntity(Long bookId, Long readPagesCount) {
-        this.bookId = bookId;
-        this.readPagesCount = readPagesCount;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -34,19 +28,23 @@ public class BookReadProgressEntity {
         this.id = id;
     }
 
-    public Long getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
-    }
-
-    public Long getReadPagesCount() {
+    public int getReadPagesCount() {
         return readPagesCount;
     }
 
-    public void setReadPagesCount(Long readPagesCount) {
+    public void setReadPagesCount(int readPagesCount) {
         this.readPagesCount = readPagesCount;
+    }
+
+    public BookEntity getBook() {
+        return book;
+    }
+
+    public void setBook(BookEntity book) {
+        this.book = book;
+    }
+
+    public Long getBookId() {
+        return book.getId();
     }
 }

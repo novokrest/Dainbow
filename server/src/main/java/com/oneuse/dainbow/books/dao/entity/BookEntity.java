@@ -1,12 +1,17 @@
 package com.oneuse.dainbow.books.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity(name = "book")
 public class BookEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -17,25 +22,20 @@ public class BookEntity {
     private String author;
 
     @Column(name = "pages_count")
-    private int pagesCount;
+    private int totalPagesCount;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "cover_img")
     private String coverImage;
 
-    private BookEntity() { }
+    @JsonManagedReference
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "book", cascade = {CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE})
+    private BookReadProgressEntity readProgress;
 
-    public BookEntity(String title, String author, int pagesCount) {
-        this(title, author, pagesCount, null);
-    }
-
-    public BookEntity(String title, String author, int pagesCount, String coverImage) {
-        this.title = title;
-        this.author = author;
-        this.pagesCount = pagesCount;
-        this.coverImage = coverImage;
-    }
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = {CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE})
+    private List<BookReadHistoryEntity> readHistories = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -61,12 +61,12 @@ public class BookEntity {
         this.author = author;
     }
 
-    public int getPagesCount() {
-        return pagesCount;
+    public int getTotalPagesCount() {
+        return totalPagesCount;
     }
 
-    public void setPagesCount(int pagesCount) {
-        this.pagesCount = pagesCount;
+    public void setTotalPagesCount(int totalPagesCount) {
+        this.totalPagesCount = totalPagesCount;
     }
 
     public String getCoverImage() {
@@ -75,5 +75,21 @@ public class BookEntity {
 
     public void setCoverImage(String coverImage) {
         this.coverImage = coverImage;
+    }
+
+    public BookReadProgressEntity getReadProgress() {
+        return readProgress;
+    }
+
+    public void setReadProgress(BookReadProgressEntity readProgress) {
+        this.readProgress = readProgress;
+    }
+
+    public List<BookReadHistoryEntity> getReadHistories() {
+        return readHistories;
+    }
+
+    public void setReadHistories(List<BookReadHistoryEntity> readHistories) {
+        this.readHistories = readHistories;
     }
 }

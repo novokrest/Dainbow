@@ -37,7 +37,7 @@ public class BookService {
 
     public List<Book> findAllBooks() {
         return StreamSupport.stream(bookDao.findAll().spliterator(), false)
-                .map(e -> Book.of(e.getId(), e.getTitle(), e.getAuthor(), e.getPagesCount()))
+                .map(e -> Book.of(e.getId(), e.getTitle(), e.getAuthor(), e.getTotalPagesCount()))
                 .collect(Collectors.toList());
     }
 
