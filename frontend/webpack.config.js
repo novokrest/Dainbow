@@ -2,15 +2,15 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        'app': './src/main/js/app.js',
-        'add-book': './src/main/js/add-book.js'
+        'app': './makeup/src/js/app.js',
+        'add-book': './makeup/src/js/add-book.js'
     },
     devtool: 'sourcemaps',
     cache: true,
     debug: true,
     output: {
         path: __dirname,
-        filename: './src/main/resources/static/built/[name].js'
+        filename: './public/dist/[name].js'
     },
     module: {
         loaders: [

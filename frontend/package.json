@@ -4,6 +4,8 @@
   "description": "read tracker: books, tutors, articles, etc.",
   "main": "webpack.config.js",
   "dependencies": {
+    "config": "^1.26.1",
+    "express": "^4.15.3",
     "react": "^15.3.2",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.3.2",
@@ -21,7 +23,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch -d"
+    "watch": "webpack --watch -d",
+    "serve": "node server/server.js"
   },
   "repository": {
     "type": "git",
