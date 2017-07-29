@@ -1,0 +1,34 @@
+{
+    "_embedded": {
+        "books": [
+            {
+                "id": 1,
+                "title": "Stub Book #1",
+                "author": "Author #1",
+                "totalPagesCount": 100,
+                "readProgress": {
+                    "readPagesCount": 70
+                },
+                "_links": {
+                    "self": {
+                        "href": "#1"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "title": "Stub Book #2",
+                "author": "Author #2",
+                "totalPagesCount": 1000,
+                "readProgress": {
+                    "readPagesCount": 275
+                },
+                "_links": {
+                    "self": {
+                        "href": "#2"
+                    }
+                }
+            }
+        ]
+    }
+}
