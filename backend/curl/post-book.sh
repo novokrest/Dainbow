@@ -1,1 +1,1 @@
-curl -i -X POST -H "Content-Type: application/json" -d '{ "title": "btest", "author": "btest", "totalPagesCount": 300, "readProgress": { "readPagesCount": 100 }, "readHistories": [{ "beginPage": 100, "endPage": 200 }, { "beginPage": 250, "endPage": 350 }] }' http://localhost:8091/api/auto/books
+curl -i -X POST -H "Content-Type: application/json" -d '{ "title": "btest", "author": "btest", "totalPagesCount": 300 }' http://localhost:8091/api/auto/books

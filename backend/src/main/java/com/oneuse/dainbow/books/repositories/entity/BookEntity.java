@@ -1,10 +1,6 @@
 package com.oneuse.dainbow.books.repositories.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity(name = "book")
@@ -28,14 +24,6 @@ public class BookEntity {
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "cover_img")
     private String coverImage;
-
-    @JsonManagedReference
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "book", cascade = {CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE})
-    private BookReadProgressEntity readProgress;
-
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = {CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE})
-    private List<BookReadActivityEntity> readHistories = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -75,21 +63,5 @@ public class BookEntity {
 
     public void setCoverImage(String coverImage) {
         this.coverImage = coverImage;
-    }
-
-    public BookReadProgressEntity getReadProgress() {
-        return readProgress;
-    }
-
-    public void setReadProgress(BookReadProgressEntity readProgress) {
-        this.readProgress = readProgress;
-    }
-
-    public List<BookReadActivityEntity> getReadHistories() {
-        return readHistories;
-    }
-
-    public void setReadHistories(List<BookReadActivityEntity> readHistories) {
-        this.readHistories = readHistories;
     }
 }

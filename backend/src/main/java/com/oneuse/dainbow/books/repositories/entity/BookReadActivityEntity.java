@@ -1,7 +1,5 @@
 package com.oneuse.dainbow.books.repositories.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -16,12 +14,11 @@ public class BookReadActivityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
-    private BookEntity book;
+    @Column(name = "book_id")
+    private long bookId;
 
     @Column(name = "begin_page")
     private int beginPage;
@@ -43,12 +40,12 @@ public class BookReadActivityEntity {
         this.id = id;
     }
 
-    public BookEntity getBook() {
-        return book;
+    public long getBookId() {
+        return bookId;
     }
 
-    public void setBook(BookEntity book) {
-        this.book = book;
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
     }
 
     public int getBeginPage() {
