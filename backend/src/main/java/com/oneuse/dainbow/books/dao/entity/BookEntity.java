@@ -35,7 +35,7 @@ public class BookEntity {
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = {CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE})
-    private List<BookReadHistoryEntity> readHistories = new ArrayList<>();
+    private List<BookReadActivityEntity> readHistories = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -85,11 +85,11 @@ public class BookEntity {
         this.readProgress = readProgress;
     }
 
-    public List<BookReadHistoryEntity> getReadHistories() {
+    public List<BookReadActivityEntity> getReadHistories() {
         return readHistories;
     }
 
-    public void setReadHistories(List<BookReadHistoryEntity> readHistories) {
+    public void setReadHistories(List<BookReadActivityEntity> readHistories) {
         this.readHistories = readHistories;
     }
 }

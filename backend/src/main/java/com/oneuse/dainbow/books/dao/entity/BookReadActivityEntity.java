@@ -7,11 +7,13 @@ import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 
 /**
+ * Information about one-time read activity
+ *
  * @author Konstantin Novokreshchenov (knovokresch@yamoney.ru)
  * @since 17.06.2017
  */
 @Entity(name = "book_read_history")
-public class BookReadHistoryEntity {
+public class BookReadActivityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
