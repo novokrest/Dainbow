@@ -1,10 +1,9 @@
-package com.oneuse.dainbow.books.dao.entity;
+package com.oneuse.dainbow.books.repositories.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.ZonedDateTime;
 
 /**
  * Information about one-time read activity

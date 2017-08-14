@@ -3,14 +3,13 @@ package com.oneuse.dainbow.books.services;
 import com.oneuse.core.Converter;
 import com.oneuse.core.DataUrlUtils;
 import com.oneuse.core.time.DayPeriod;
-import com.oneuse.dainbow.books.dao.BookDao;
+import com.oneuse.dainbow.books.repositories.BookRepository;
 import com.oneuse.dainbow.books.domain.Book;
 import com.oneuse.dainbow.books.domain.ReadActivity;
 import com.oneuse.dainbow.books.domain.ReadHistory;
 import com.oneuse.dainbow.books.dto.BookDTO;
 import com.oneuse.dainbow.books.dto.LogReadActivityDTO;
 import com.oneuse.dainbow.books.image.Image;
-import com.oneuse.dainbow.books.storage.BookRepository;
 import com.oneuse.dainbow.books.storage.ReadHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,13 +21,13 @@ import java.util.stream.StreamSupport;
 @Component
 public class BookService {
     @Deprecated
-    private final BookRepository bookRepository;
-    private final BookDao bookDao;
+    private final com.oneuse.dainbow.books.storage.BookRepository bookRepository;
+    private final BookRepository bookDao;
     private final ReadHistoryRepository readHistoryRepository;
 
     @Autowired
-    public BookService(@Deprecated BookRepository bookRepository,
-                       BookDao bookDao,
+    public BookService(@Deprecated com.oneuse.dainbow.books.storage.BookRepository bookRepository,
+                       BookRepository bookDao,
                        ReadHistoryRepository readHistoryRepository) {
         this.bookRepository = bookRepository;
         this.bookDao = bookDao;
