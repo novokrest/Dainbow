@@ -13,15 +13,17 @@ logRouter.use(function (req, res, next) {
 });
 app.use('/', logRouter);
 
-const apiRouter = express.Router();
-apiRouter.use('/books', function (req, res, next) {
-    var books = jsonfile.readFileSync(path.join(__dirname, '../resources/stub', 'books.json'));
-    res.json(books);
-});
-apiRouter.use(function (req, res, next) {
-    res.json({});
-});
-app.use('/api/auto', apiRouter);
+if (config.stubMode) {
+    const apiRouter = express.Router();
+    apiRouter.use('/books', function (req, res, next) {
+        var books = jsonfile.readFileSync(path.join(__dirname, '../resources/stub', 'books.json'));
+        res.json(books);
+    });
+    apiRouter.use(function (req, res, next) {
+        res.json({});
+    });
+    app.use('/api/auto', apiRouter);
+}
 
 const rootUrl = config.server.rootUrl;
 app.use(rootUrl, express.static(path.join(process.cwd(), 'public')));

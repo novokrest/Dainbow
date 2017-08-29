@@ -8,5 +8,4 @@ registry.register('application/hal+json', require('rest/mime/type/application/ha
 
 module.exports = rest
     .wrap(require('rest/interceptor/errorCode'))
-    .wrap(mime, { registry: registry })
-    .wrap(defaultRequest, { headers: { 'Accept': 'application/hal+json' } });
+    .wrap(mime, {mime: 'application/json'});

@@ -2,5 +2,7 @@
     "server": {
         "port": 8080,
         "rootUrl": "/dainbow/react"
-    }
+    },
+    "stubMode": false,
+    "apiUrl": "http://localhost:8091/api/auto/read"
 }

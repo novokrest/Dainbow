@@ -1,3 +1,101 @@
+'use strict';
+
+const React = require('react');
+const ReactDOM = require('react-dom');
+
+const ApiClient = require('./api-client').ApiClient;
+
+class AddBookForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { title: '' };
+
+        this.updateTitle = this.updateTitle.bind(this);
+        this.onAddButtonClick = this.onAddButtonClick.bind(this);
+    }
+
+    updateTitle(title) {
+        console.log('updateTitle', title);
+        this.setState({ title: title });
+    }
+
+    onAddButtonClick() {
+        console.log('onAddButtonClick()', this.state);
+        ApiClient.postBook(this.state.book, () => {
+            console.log('Request has been sent successfully');
+            // TODO: implement proper navigation
+            var currentUrl = window.location.href;
+            window.location.href = currentUrl.substr(0, currentUrl.lastIndexOf('/'));
+        });
+    }
+
+    render() {
+        return (
+            <form className="form-horizontal">
+                <BookTitle title={this.state.title} updateState={this.updateTitle} />
+                <AddBookButton onClick={this.onAddButtonClick} />
+            </form>
+        );
+    }
+}
+
+class BookTitle extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+        this.props.updateState(e.target.value);
+    }
+
+    render() {
+        return (
+            <div className="form-group">
+                <label htmlFor="book-title" className="col-sm-2 control-label">
+                    Title
+                </label>
+                <div className="col-sm-10">
+                    <input id="book-title" type="text" className="form-control"
+                        value={this.props.title} onChange={this.handleChange}
+                        placeholder="e.g. C# in Depth, Third Edition"
+                        aria-describedby="book-title-description" />
+                    <small id="book-title-description" className="form-text text-muted">
+                        The book you will start or continue to read
+                    </small>
+                </div>
+            </div>
+        );
+    }
+}
+
+class AddBookButton extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="form-group">
+                <div className="col-sm-2"></div>
+                <div className="col-sm-10">
+                    <a id="book-add" 
+                       href="#" role="button" className="btn btn-primary" 
+                       onClick={this.props.onClick}>
+                        Add Book
+                    </a>
+                </div>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <AddBookForm />,
+    document.getElementById('addBookForm')
+);
+
 $(function() {
     var readPagesIntervalRegex = /^\d+\s*(-\s*\d+)?$/g,
         readPagesBeginIntervalRegex = /^\d+\s*(-\s*)?$/g;
@@ -42,22 +140,6 @@ $(function() {
         };
 
         console.log('Sending request:', data);
-        $.ajax({
-            type: 'POST',
-            url: '/api/auto/books',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function() {
-                console.log('Request has been sent successfully');
-                // TODO: implement proper navigation
-                var currentUrl = window.location.href;
-                window.location.href = currentUrl.substr(0, currentUrl.lastIndexOf('/'));
-            },
-            error: function() {
-                console.log('Failed to send request');
-            }
-        });
 
         $(this).blur();
     });
