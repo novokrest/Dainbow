@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 
+@CrossOrigin(origins = "http://localhost:8080", methods = RequestMethod.GET)
 @RestController
 @RequestMapping("/api/manual/books")
 public class BookController {
