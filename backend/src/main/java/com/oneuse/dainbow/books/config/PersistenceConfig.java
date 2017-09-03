@@ -1,34 +1,34 @@
 package com.oneuse.dainbow.books.config;
 
+import com.oneuse.dainbow.books.properties.DatabaseProperties;
 import com.oneuse.dainbow.books.storage.DatabaseConnectionProperties;
 import com.oneuse.dainbow.books.storage.DatabaseConnectionPropertiesProvider;
 import com.oneuse.dainbow.books.storage.PersistencePackageMarker;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.support.lob.DefaultLobHandler;
 import org.springframework.jdbc.support.lob.LobHandler;
 
 import javax.sql.DataSource;
+import javax.xml.crypto.Data;
 
 @Configuration
-@ComponentScan(basePackageClasses = PersistencePackageMarker.class)
+@Import(DatabaseProperties.class)
 public class PersistenceConfig {
+
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
 
     @Bean
-    public DataSource dataSource(DatabaseConnectionPropertiesProvider dbConnectionPropertiesProvider) {
+    public DataSource dataSource(DatabaseProperties databaseProperties) {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        DatabaseConnectionProperties dbConnectionProperties = dbConnectionPropertiesProvider.getDatabaseConnectionProperties();
-        dataSource.setDriverClassName(dbConnectionProperties.getDriverClassName());
-        dataSource.setUrl(dbConnectionProperties.getUrl());
-        dataSource.setUsername(dbConnectionProperties.getUserName());
-        dataSource.setPassword(dbConnectionProperties.getPassword());
+        dataSource.setDriverClassName(databaseProperties.getDriverClass());
+        dataSource.setUrl(databaseProperties.getUrl());
+        dataSource.setUsername(databaseProperties.getUser());
+        dataSource.setPassword(databaseProperties.getPassword());
         return dataSource;
     }
 

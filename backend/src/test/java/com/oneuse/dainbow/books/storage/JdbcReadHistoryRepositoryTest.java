@@ -1,11 +1,11 @@
 package com.oneuse.dainbow.books.storage;
 
 import com.oneuse.core.time.DayPeriod;
+import com.oneuse.dainbow.books.config.ApplicationConfig;
 import com.oneuse.dainbow.books.domain.BookPages;
 import com.oneuse.dainbow.books.services.BookPagesCreator;
 import com.oneuse.dainbow.books.domain.ReadActivity;
 import com.oneuse.dainbow.books.config.PersistenceConfig;
-import com.oneuse.dainbow.books.config.RootConfig;
 import com.oneuse.dainbow.books.config.WebConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import java.time.LocalTime;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class, PersistenceConfig.class, WebConfig.class })
+@ContextConfiguration(classes = {ApplicationConfig.class})
 @WebAppConfiguration
 @ActiveProfiles({"test"})
 public class JdbcReadHistoryRepositoryTest {

@@ -1,7 +1,8 @@
 package com.oneuse.dainbow.books.web;
 
+import com.oneuse.dainbow.books.Application;
+import com.oneuse.dainbow.books.config.ApplicationConfig;
 import com.oneuse.dainbow.books.config.PersistenceConfig;
-import com.oneuse.dainbow.books.config.RootConfig;
 import com.oneuse.dainbow.books.config.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -14,7 +15,7 @@ import javax.servlet.ServletRegistration;
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { RootConfig.class, PersistenceConfig.class};
+        return new Class<?>[] {ApplicationConfig.class};
     }
 
     @Override

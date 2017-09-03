@@ -1,11 +1,8 @@
 package com.oneuse.dainbow.books.config;
 
-import com.oneuse.dainbow.books.web.WebPackageMarker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -15,9 +12,8 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import javax.servlet.ServletContext;
 import java.util.Properties;
 
-//@PropertySource("application.properties")
+
 @Configuration
-@ComponentScan(basePackageClasses = WebPackageMarker.class)
 public class WebConfig extends WebMvcConfigurerAdapter implements ServletContextAware {
 
     private ServletContext servletContext;
