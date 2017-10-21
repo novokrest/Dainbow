@@ -78,6 +78,21 @@ class BookService {
     }
 }
 
+class BookPageService {
+    constructor(book, readActivities) {
+        this.book = book;
+        this.readActivities = readActivities;
+    }
+
+    isPageRead(pageNumber) {
+        return _.find(
+            this.readActivities, 
+            readActivity => pageNumber >= readActivity.beginPage && pageNumber <= readActivity.endPage
+        ) != undefined;
+    }
+}
+
 module.exports = {
-    BookService: BookService
+    BookService: BookService,
+    BookPageService: BookPageService
 }

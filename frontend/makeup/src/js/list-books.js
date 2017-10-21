@@ -19,7 +19,6 @@ class ListBooksComponent extends React.Component {
     componentDidMount() {
         ApiClient.getBooksAndHistory(
             (books, readActivities) => {
-                console.log('books', books.length)
                 const bookService = new BookService(books, readActivities);
                 const readProgresses = bookService.calculateReadProgresses();
                 this.setState({ books: books, readProgresses: readProgresses });
@@ -66,8 +65,6 @@ class Books extends React.Component {
             </div>
         );
 
-        console.log('render:', books.length);
-
         var rowsCount = Math.floor(books.length / this.state.booksPerRow) + (books.length % this.state.booksPerRow ? 1 : 0);
         // var chunkedBooks = utils.toChunks(books, this.state.booksPerRow);
 
@@ -78,13 +75,10 @@ class Books extends React.Component {
         // );
 
         const bookCards = _.map(books, (book, i) => 
-            <div key={i} className="card">
+            <div key={i} className="card book-card">
                 {book}
             </div>
         );
-
-        console.log('books.length:', books.length);
-        console.log('bookCards:', bookCards.length);
 
         return (
             <div className="container">

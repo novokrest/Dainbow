@@ -1,8 +1,8 @@
 module.exports = {
-    toChunks: (arr, n) => {
-        var res = []
-        while (arr.length > 0) {
-            res.push(arr.splice(0, n));
+    toChunks: (arr, chunkSize) => {
+        var res = [];
+        for (var i = 0; i < arr.length; i += chunkSize) {
+            res.push(arr.slice(i, i + chunkSize));
         }
         return res;
     }

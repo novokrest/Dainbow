@@ -8,7 +8,6 @@ const OverviewBookComponent = require('./overview-book').OverviewBookComponent;
 const AddBookForm = require('./add-book').AddBookForm;
 
 const Header = () => (
-    <div>
     <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
         <button className="navbar-toggler navbar-toggler-right collapsed" 
                 type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" 
@@ -30,7 +29,6 @@ const Header = () => (
             </ul>
         </div>
     </nav>
-    </div>
 )
 
 const Main = () => (

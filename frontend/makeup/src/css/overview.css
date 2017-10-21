@@ -1,0 +1,18 @@
+.overview-h1 {
+    margin-bottom: 20px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+
+.overview-book-placeholder {
+    padding-bottom: 3rem;
+}
+
+.empty {
+    height: 200px;
+}
+  
+.placeholder img {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
