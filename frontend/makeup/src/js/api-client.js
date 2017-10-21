@@ -4,7 +4,7 @@ const _ = require('lodash');
 class ApiClient {
 
     static default() {
-        return new ApiClient('http://localhost:8091/api/auto/read');
+        return new ApiClient('http://localhost:8091/api/v1/read');
     }
 
     constructor(apiUrl) {
@@ -29,12 +29,26 @@ class ApiClient {
         });
     }
 
+    getBook(id, callback) {
+        this._getUrl(`/books/${id}`, response => {
+            const book = response.entity;
+            callback(book);
+        });
+    }
+
     postBook(book, callback) {
         this._postUrl('/books', book, callback);
     }
 
     getHistory(callback) {
         this._getUrl('/history', response => {
+            var readActivities = response.entity._embedded.history;
+            callback(readActivities);
+        });
+    }
+
+    getBookHistory(id, callback) {
+        this._getUrl(`/history/search/book?bookId=${id}`, response => {
             var readActivities = response.entity._embedded.history;
             callback(readActivities);
         });

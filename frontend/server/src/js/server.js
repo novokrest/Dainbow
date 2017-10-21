@@ -1,8 +1,11 @@
+const configuration = require('react-global-configuration');
 const config = require('config');
 const express = require('express');
 const jsonfile = require('jsonfile');
 const path = require('path');
 const process = require('process');
+const fs = require('fs');
+const renderConfigs = require('./render').renderConfigs;
 
 const app = express();
 
@@ -26,7 +29,10 @@ if (config.stubMode) {
 }
 
 const rootUrl = config.server.rootUrl;
-app.use(rootUrl, express.static(path.join(process.cwd(), 'public')));
+const publicRootPath = path.join(process.cwd(), 'public');
+const configsPath = path.join(publicRootPath, 'config.js');
+renderConfigs(configsPath);
+app.use(rootUrl, express.static(publicRootPath));
 
 const port = config.server.port;
 app.listen(port, function () {

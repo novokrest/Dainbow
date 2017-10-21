@@ -4,13 +4,18 @@
   "description": "read tracker: books, tutors, articles, etc.",
   "main": "webpack.config.js",
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "config": "^1.26.1",
     "express": "^4.15.3",
     "jsonfile": "^3.0.1",
     "react": "^15.3.2",
     "react-bootstrap": "^0.31.0",
-    "react-dom": "^15.3.2",
+    "react-dom": "^15.6.2",
+    "react-global-configuration": "^1.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "rest": "^1.3.1",
+    "tether": "^1.4.0",
     "webpack": "^1.12.2"
   },
   "devDependencies": {

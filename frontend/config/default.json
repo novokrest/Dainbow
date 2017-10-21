@@ -4,5 +4,5 @@
         "rootUrl": "/dainbow/react"
     },
     "stubMode": false,
-    "apiUrl": "http://localhost:8091/api/auto/read"
+    "apiUrl": "http://localhost:8091/api/v1/read"
 }

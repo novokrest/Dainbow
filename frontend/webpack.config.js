@@ -2,8 +2,7 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        'app': './makeup/src/js/app.js',
-        'add-book': './makeup/src/js/add-book.js'
+        'app': './makeup/src/js/app.js'
     },
     devtool: 'sourcemaps',
     cache: true,
