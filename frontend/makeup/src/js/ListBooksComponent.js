@@ -9,6 +9,8 @@ const RouteService = require('./routes').RouteService;
 const ApiClient = require('./api-client').ApiClient;
 const BookService = require('./book-service').BookService;
 
+const BookProgressComponent = require('./BookProgressComponent').BookProgressComponent;
+
 class ListBooksComponent extends React.Component {
 
     constructor(props) {
@@ -61,7 +63,7 @@ class Books extends React.Component {
     render() {
         var books = _.map(this.props.books, book =>
             <div key={book._links.self.href} className={this.state.columnClass}>
-                <Book book={book} readProgress={this.props.readProgresses[book.id]}/>
+                <BookComponent book={book} readProgress={this.props.readProgresses[book.id]}/>
             </div>
         );
 
@@ -90,7 +92,7 @@ class Books extends React.Component {
     }
 }
 
-class Book extends React.Component {
+class BookComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -111,7 +113,7 @@ class Book extends React.Component {
                     <h4 className="card-title">{this.props.book.title}</h4>
                     <h5 className="card-title">{this.props.book.author}</h5>
                     <div className='book-card-footer'>
-                        {this.renderProgressBar(this.props.readProgress)}
+                        <BookProgressComponent readProgress={this.props.readProgress}/>
                         <Link to={RouteService.getOverviewBookRoute(book.id)} className="book-more btn btn-primary">More</Link>
                     </div>
                 </div>

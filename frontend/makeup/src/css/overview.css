@@ -1,11 +1,9 @@
-.overview-h1 {
-    margin-bottom: 20px;
-    padding-bottom: 9px;
-    border-bottom: 1px solid #eee;
-}
-
 .overview-book-placeholder {
     padding-bottom: 3rem;
+}
+
+.overview-log-btn {
+    border-radius: 2rem;
 }
 
 .empty {

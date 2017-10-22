@@ -26,6 +26,11 @@ class RouteService {
         const param = id ? id : ':id';
         return `${baseApiUrl}/books/${param}`;
     }
+
+    getLogReadActivityRoute(id) {
+        const param = id ? id : ':id';
+        return `${baseApiUrl}/books/${param}/log-read-activity`
+    }
 };
 
 module.exports = {

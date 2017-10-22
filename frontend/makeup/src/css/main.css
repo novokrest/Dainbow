@@ -11,6 +11,12 @@ body {
     margin-bottom: 40px;
 }
 
+.book-title-h1 {
+    margin-bottom: 20px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+
 .book-row {
     font-size: 0;
 }

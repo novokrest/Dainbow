@@ -1,8 +1,14 @@
 'use strict';
 
 const React = require('react');
+const Link = require('react-router-dom').Link;
+const BookProgressComponent = require('./BookProgressComponent').BookProgressComponent;
+const BookTitleHeaderComponent = require('./BookTitleHeaderComponent').BookTitleHeaderComponent;
+
 const ApiClient = require('./api-client').ApiClient;
+const RouteService = require('./routes').RouteService;
 const BookPageService = require('./book-service').BookPageService;
+const BookReadProgress = require('./book-service').BookReadProgress;
 
 const toChunks = require('./utils').toChunks;
 
@@ -30,25 +36,16 @@ class OverviewBookComponent extends React.Component {
         this.bookPageService = new BookPageService(book, this.state.readActivities);
         const pageCards = this.generatePageCards();
         const pageCardTable = this.buildPageCardTable(pageCards);
+        const bookOverview = this.buildBookOverview();
         return (
             <div className="container-fluid">
                 <div className="row">
                     <main className="col-md-10 offset-md-2 pt-3">
-                        <h1 className="overview-h1">
-                            {book.title}
-                        </h1>
-                        <section className="row text-center overview-book-placeholder">
-                            <div className="empty"></div>
-                        </section>
+                        <BookTitleHeaderComponent title={book.title} />
+                        {bookOverview}
                         {pageCardTable}
                     </main>
                 </div>
-                {/* <div className="form-group row">
-                    <label htmlFor="book-title" className="col-2 col-form-label">Title</label>
-                    <div className="col-10">
-                        <input id="book-title" className="form-control" type="text" value={book.title} />
-                    </div>
-                </div> */}
             </div>
         );
     }
@@ -94,6 +91,34 @@ class OverviewBookComponent extends React.Component {
                         {rows}
                     </tbody>
                 </table>
+            </div>
+        );
+    }
+
+    buildBookOverview() {
+        const book = this.state.book;
+        const pagesService = new BookPageService(book, this.state.readActivities);
+        const readProgress = pagesService.calculateReadProgress();
+        return (
+            <div className="text-center overview-book-placeholder">
+                <div>
+                    <p>Author: {book.author}</p>
+                </div>
+                <div>
+                    <p>Total Pages: {book.totalPagesCount}</p>
+                </div>
+                <div>
+                    <p>Read Pages: {readProgress.readPagesCount}</p>
+                </div>
+                <div>
+                    <BookProgressComponent readProgress={readProgress}/>
+                </div>
+                <div className="top-buffer">
+                    <Link to={RouteService.getLogReadActivityRoute(book.id)} 
+                          className="overview-log-btn btn btn-outline-primary">
+                        Log Read Activity
+                    </Link>
+                </div>
             </div>
         );
     }

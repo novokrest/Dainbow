@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { render } from 'react-dom';
 import { RouteService } from './routes';
 
-const ListBooksComponent = require('./list-books').ListBooksComponent;
-const OverviewBookComponent = require('./overview-book').OverviewBookComponent;
+const ListBooksComponent = require('./ListBooksComponent').ListBooksComponent;
+const OverviewBookComponent = require('./OverviewBookComponent').OverviewBookComponent;
+const LogReadActivityComponent = require('./LogReadActivityComponent').LogReadActivityComponent;
 const AddBookForm = require('./add-book').AddBookForm;
 
 const Header = () => (
@@ -37,6 +38,7 @@ const Main = () => (
             <Route exact path={RouteService.getBooksRoute()} component={ListBooksComponent} />
             <Route exact path={RouteService.getAddBookRoute()} component={AddBookForm} />
             <Route exact path={RouteService.getOverviewBookRoute()} component={OverviewBookComponent} />
+            <Route exact path={RouteService.getLogReadActivityRoute()} component={LogReadActivityComponent} />
         </Switch>
     </main>
 );

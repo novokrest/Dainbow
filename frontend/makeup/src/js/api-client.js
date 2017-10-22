@@ -54,6 +54,12 @@ class ApiClient {
         });
     }
 
+    postReadActivity(readActivity, callback) {
+        this._postUrl('/history', response => {
+            callback(response.entity);
+        });
+    }
+
     _postUrl(path, entity, callback) {
         client({ method: 'POST', path: this.absoluteUrl(path), entity: entity }).done(response => {
             callback(response);

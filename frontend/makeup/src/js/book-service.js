@@ -20,38 +20,33 @@ class BookReadProgress {
     }
 
     get readPercent() {
-        return Math.floor(this._readPagesCount / this._totalPagesCount * 100);
+        return this._totalPagesCount == 0 
+            ? 0 
+            : Math.floor(this._readPagesCount / this._totalPagesCount * 100);
     }
 };
 
-class BookService {
-
-    constructor(books, readActivities) {
-        this._books = books;
-        this._readActivities = readActivities;
+class BookPageService {
+    constructor(book, readActivities) {
+        this.book = book;
+        this.readActivities = readActivities;
     }
 
-    /**
-     * Returns map [bookId -> BookReadProgress]
-     */
-    calculateReadProgresses() {
-        return _.reduce(
-            this._books, 
-            (result, book) => {
-                const bookId = book.id;
-                const readPagesCount = this._calculateReadPagesCount(bookId);
-                result[bookId] = new BookReadProgress(bookId, readPagesCount, book.totalPagesCount);
-                return result;
-            },
-            {}
-        );
+    isPageRead(pageNumber) {
+        return _.find(
+            this.readActivities, 
+            readActivity => pageNumber >= readActivity.beginPage && pageNumber <= readActivity.endPage
+        ) != undefined;
     }
 
-    _calculateReadPagesCount(bookId) {
-        const activities = _.sortBy(
-            _.filter(this._readActivities, activity => activity.bookId === bookId), 
-            activity => activity.beginPage
-        );
+    calculateReadProgress() {
+        const book = this.book;
+        const readPagesCount = this._calculateReadPagesCount();
+        return new BookReadProgress(book.id, readPagesCount, book.totalPagesCount);
+    }
+
+    _calculateReadPagesCount() {
+        const activities = _.sortBy(this.readActivities, activity => activity.beginPage);
         const toInterval = activity => { return {begin: activity.beginPage, end: activity.endPage} };
         const nonIntersectIntervals = _.reduce(
             activities, 
@@ -78,21 +73,37 @@ class BookService {
     }
 }
 
-class BookPageService {
-    constructor(book, readActivities) {
-        this.book = book;
-        this.readActivities = readActivities;
+class BookService {
+
+    constructor(books, readActivities) {
+        this._books = books;
+        this._readActivities = readActivities;
     }
 
-    isPageRead(pageNumber) {
-        return _.find(
-            this.readActivities, 
-            readActivity => pageNumber >= readActivity.beginPage && pageNumber <= readActivity.endPage
-        ) != undefined;
+    /**
+     * Returns map [bookId -> BookReadProgress]
+     */
+    calculateReadProgresses() {
+        return _.reduce(
+            this._books, 
+            (result, book) => {
+                const bookId = book.id;
+                result[bookId] = this._calculateReadProgress(book);
+                return result;
+            },
+            {}
+        );
+    }
+
+    _calculateReadProgress(book) {
+        const activities = _.filter(this._readActivities, activity => activity.bookId === book.id);
+        const service = new BookPageService(book, activities);
+        return service.calculateReadProgress();
     }
 }
 
 module.exports = {
+    BookReadProgress: BookReadProgress,
     BookService: BookService,
     BookPageService: BookPageService
 }
