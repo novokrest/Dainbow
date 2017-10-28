@@ -27,6 +27,10 @@ class RouteService {
         return `${baseApiUrl}/books/${param}`;
     }
 
+    navigateOverviewBookRoute(history, id) {
+        history.push(this.getOverviewBookRoute(id));
+    }
+
     getLogReadActivityRoute(id) {
         const param = id ? id : ':id';
         return `${baseApiUrl}/books/${param}/log-read-activity`

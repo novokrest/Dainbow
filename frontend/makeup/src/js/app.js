@@ -6,7 +6,7 @@ import { RouteService } from './routes';
 const ListBooksComponent = require('./ListBooksComponent').ListBooksComponent;
 const OverviewBookComponent = require('./OverviewBookComponent').OverviewBookComponent;
 const LogReadActivityComponent = require('./LogReadActivityComponent').LogReadActivityComponent;
-const AddBookForm = require('./add-book').AddBookForm;
+const AddBookComponent = require('./AddBookComponent').AddBookComponent;
 
 const Header = () => (
     <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
@@ -36,7 +36,7 @@ const Main = () => (
     <main>
         <Switch>
             <Route exact path={RouteService.getBooksRoute()} component={ListBooksComponent} />
-            <Route exact path={RouteService.getAddBookRoute()} component={AddBookForm} />
+            <Route exact path={RouteService.getAddBookRoute()} component={AddBookComponent} />
             <Route exact path={RouteService.getOverviewBookRoute()} component={OverviewBookComponent} />
             <Route exact path={RouteService.getLogReadActivityRoute()} component={LogReadActivityComponent} />
         </Switch>

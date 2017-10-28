@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="node_modules/tether/dist/css/tether.min.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css">
         <link rel="stylesheet" type="text/css" href="css/sandbox.css">
     </head>
     <body>
@@ -30,107 +31,37 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                        <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Reports</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Analytics</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Export</a>
-                        </li>
-                    </ul>
-
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Nav item</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Nav item again</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">One more nav</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Another nav item</a>
-                        </li>
-                    </ul>
-
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Nav item again</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">One more nav</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Another nav item</a>
-                        </li>
-                    </ul>
-                </nav>
-                <main class="pt-3 offset-md-2 col-md-10">
-                    <h1>Some Book</h1>
-                    <section class="row text-center placeholders">
-                        <div class="empty"></div>
-                    </section>
-                    <div class="table-responsive">
-                        <table class="table table-stripped">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="card card-outline-info text-center">
-                                            <div class="1card-block">
-                                                <blockquote class="card-blockquote">
-                                                    1
-                                                </blockquote>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="card card-inverse card-warning text-center">
-                                            <div class="1card-block">
-                                                <blockquote class="card-blockquote">
-                                                    2
-                                                </blockquote>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="card card-inverse card-success text-center">
-                                            <div class="1card-block">
-                                                <blockquote class="card-blockquote">
-                                                    3
-                                                </blockquote>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="card card-inverse card-success text-center">
-                                            <div class="1card-block">
-                                                <blockquote class="card-blockquote">
-                                                    4
-                                                </blockquote>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="card card-inverse card-info text-center">
-                                            <div class="1card-block">
-                                                <blockquote class="card-blockquote">
-                                                    5
-                                                </blockquote>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <main class="col-md-10 offset-md-2 pt-3">
+                    <form>
+                        <div class="form-group row">
+                            <label for="date-input" class="col-2 col-form-label">Date:</label>
+                            <div class="col-10">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-th"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tcustom" class="col-2 col-form-label">Time:</label>
+                            <div class="col-4">
+                                <input class="form-control" type="time" id="custom" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="dcustom" class="col-2 col-form-label">Date:</label>
+                            <div class="col-4">
+                                <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                    <input type="text" class="form-control" id="dcustom"/>
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </main>
             </div>
         </div>
@@ -138,5 +69,11 @@
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
         <script src="node_modules/tether/dist/js/tether.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script>
+            $('.input-group.date').datepicker({
+                format: "dd/mm/yyyy"
+            });
+        </script>
     </body>
 </html>

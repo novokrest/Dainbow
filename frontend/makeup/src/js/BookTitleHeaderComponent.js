@@ -6,13 +6,12 @@ class BookTitleHeaderComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.title = this.props.title;
     }
 
     render() {
         return (
             <h1 className="book-title-h1">
-                {this.title}
+                {this.props.title}
             </h1>
         );
     }

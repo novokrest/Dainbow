@@ -8,7 +8,7 @@ const ApiClient = require('./api-client').ApiClient;
 const singlePageRegex = /^\d+$/g;
 const pageIntervalRegex = /^\d+\s*-\s*\d+$/g;
 
-class AddBookForm extends React.Component {
+class AddBookComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -273,9 +273,7 @@ class AddBookButton extends React.Component {
             <div className="form-group">
                 <div className="col-sm-2"></div>
                 <div className="col-sm-10">
-                    <a id="book-add" 
-                       href="#" role="button" className="btn btn-primary" 
-                       onClick={this.props.onClick}>
+                    <a id="book-add" href="#" role="button" className="btn btn-primary" onClick={this.props.onClick}>
                         Add Book
                     </a>
                 </div>
@@ -322,5 +320,5 @@ $(function() {
 });
 
 module.exports = {
-    AddBookForm: AddBookForm
+    AddBookComponent: AddBookComponent
 }
