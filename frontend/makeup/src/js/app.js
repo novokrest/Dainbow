@@ -9,27 +9,47 @@ const LogReadActivityComponent = require('./LogReadActivityComponent').LogReadAc
 const AddBookComponent = require('./AddBookComponent').AddBookComponent;
 
 const Header = () => (
-    <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-        <button className="navbar-toggler navbar-toggler-right collapsed" 
-                type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" 
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-        </button>
-        <a className="navbar-brand" href="#">ReACT</a>
-        <div id="navbarMenu" className="navbar-collapse collapse" aria-expanded="false">
-            <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                    <Link className="nav-link" to={RouteService.getBooksRoute()}>Books</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to={RouteService.getAddBookRoute()}>Add</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to={RouteService.getRemoveBookRoute()}>Remove</Link>
-                </li>
-            </ul>
+
+    <div className="navbar-wrapper">
+        <div className="container">
+            <nav className="navbar navbar-inverse navbar-static-top">
+                <div className="container">
+                    <div className="navbar-header">
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span className="sr-only"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
+                        <a className="navbar-brand" href="#">ReACT</a>
+                    </div>
+                    <div id="navbar" className="navbar-collapse collapse">
+                        <ul className="nav navbar-nav">
+                            <li className="nav-item active">
+                                <Link className="nav-link" to={RouteService.getBooksRoute()}>Books</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={RouteService.getAddBookRoute()}>Add</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={RouteService.getRemoveBookRoute()}>Remove</Link>
+                            </li>
+                            <li className="dropdown">
+                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+                                <ul className="dropdown-menu">
+                                    <li><a href="#">TODO</a></li>
+                                    <li role="separator" className="divider"></li>
+                                    <li className="dropdown-header">Info</li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Help</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </div>
 )
 
 const Main = () => (

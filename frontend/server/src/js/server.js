@@ -5,7 +5,6 @@ const jsonfile = require('jsonfile');
 const path = require('path');
 const process = require('process');
 const fs = require('fs');
-const renderConfigs = require('./render').renderConfigs;
 
 const app = express();
 
@@ -30,8 +29,6 @@ if (config.stubMode) {
 
 const rootUrl = config.server.rootUrl;
 const publicRootPath = path.join(process.cwd(), 'public');
-const configsPath = path.join(publicRootPath, 'config.js');
-renderConfigs(configsPath);
 app.use(rootUrl, express.static(publicRootPath));
 
 const port = config.server.port;

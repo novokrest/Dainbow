@@ -3,7 +3,7 @@
 const configuration = require('react-global-configuration');
 const React = require('react');
 const Link = require('react-router-dom').Link;
-const utils = require('./utils');
+const toChunks = require('./utils').toChunks;
 
 const RouteService = require('./routes').RouteService;
 const ApiClient = require('./api-client').ApiClient;
@@ -55,38 +55,27 @@ class Books extends React.Component {
     constructor(props) {
         super(props)
         this.state = { 
-            booksPerRow: 3, 
-            columnClass: ''// 'col-xs-4 col-md-4' 
+            booksPerRow: 3
         };
     }
 
     render() {
-        var books = _.map(this.props.books, book =>
-            <div key={book._links.self.href} className={this.state.columnClass}>
+        const bookCards = _.map(this.props.books, (book, i) =>
+            <div key={i} className="card book-card">
                 <BookComponent book={book} readProgress={this.props.readProgresses[book.id]}/>
             </div>
         );
 
-        var rowsCount = Math.floor(books.length / this.state.booksPerRow) + (books.length % this.state.booksPerRow ? 1 : 0);
-        // var chunkedBooks = utils.toChunks(books, this.state.booksPerRow);
-
-        // var rows = chunkedBooks.map((chunk, i) =>
-        //     <div key={i} className="book-row row top-buffer bottom-buffer">
-        //         {chunk}
-        //     </div>
-        // );
-
-        const bookCards = _.map(books, (book, i) => 
-            <div key={i} className="card book-card">
-                {book}
+        const bookCardChunks = toChunks(bookCards, this.state.booksPerRow);
+        const bookCardGroups = _.map(bookCardChunks, (bookCardChunk, i) => 
+            <div key={i} className="card-group">
+                {bookCardChunk}
             </div>
         );
 
         return (
             <div className="container">
-                <div className="row">
-                    {bookCards}
-                </div>
+                {bookCardGroups}
             </div>
         );
     }
@@ -103,7 +92,7 @@ class BookComponent extends React.Component {
         var book = this.props.book, readProgress = this.props.readProgress;
         var imgSrc = book.coverImage ? 'data:image/jpg;base64, ' + book.coverImage : this.state.defaultCoverImgSrc;
         return (
-            <div className="book card">
+            <div >
                 <div className='book-cover-holder'>
                     <a className="thumbnail" href="#">
                         <img className="book-cover card-img-top" width="100%" src={imgSrc} alt="cover" />

@@ -5,5 +5,5 @@ module.exports = {
             res.push(arr.slice(i, i + chunkSize));
         }
         return res;
-    }
+    },
 };

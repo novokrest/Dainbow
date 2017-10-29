@@ -38,7 +38,7 @@ class OverviewBookComponent extends React.Component {
         const pageCardTable = this.buildPageCardTable(pageCards);
         const bookOverview = this.buildBookOverview();
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <div className="row">
                     <main className="col-md-10 offset-md-2 pt-3">
                         <BookTitleHeaderComponent title={book.title} />
