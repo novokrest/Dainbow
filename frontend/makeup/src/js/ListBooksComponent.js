@@ -61,14 +61,14 @@ class Books extends React.Component {
 
     render() {
         const bookCards = _.map(this.props.books, (book, i) =>
-            <div key={i} className="card book-card">
+            <div key={i} className="col-md-4 col-lg-4">
                 <BookComponent book={book} readProgress={this.props.readProgresses[book.id]}/>
             </div>
         );
 
         const bookCardChunks = toChunks(bookCards, this.state.booksPerRow);
         const bookCardGroups = _.map(bookCardChunks, (bookCardChunk, i) => 
-            <div key={i} className="card-group">
+            <div key={i} className="row .row-eq-height top-buffer">
                 {bookCardChunk}
             </div>
         );
@@ -95,15 +95,15 @@ class BookComponent extends React.Component {
             <div >
                 <div className='book-cover-holder'>
                     <a className="thumbnail" href="#">
-                        <img className="book-cover card-img-top" width="100%" src={imgSrc} alt="cover" />
+                        <img className="book-cover center-block" width="100%" src={imgSrc} alt="cover" />
                     </a>
                 </div>
                 <div className="card-block">
-                    <h4 className="card-title">{this.props.book.title}</h4>
-                    <h5 className="card-title">{this.props.book.author}</h5>
+                    <h4>{this.props.book.title}</h4>
+                    <h5>{this.props.book.author}</h5>
                     <div className='book-card-footer'>
                         <BookProgressComponent readProgress={this.props.readProgress}/>
-                        <Link to={RouteService.getOverviewBookRoute(book.id)} className="book-more btn btn-primary">More</Link>
+                        <Link to={RouteService.getOverviewBookRoute(book.id)} className="book-more btn btn-primary pull-right">More</Link>
                     </div>
                 </div>
             </div>

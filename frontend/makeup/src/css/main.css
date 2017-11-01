@@ -11,6 +11,13 @@ body {
     margin-bottom: 40px;
 }
 
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+
 .book-title-h1 {
     margin-bottom: 20px;
     padding-bottom: 9px;
@@ -52,6 +59,7 @@ body {
 }
 
 .book-cover {
+    height: 200px;
 }
 
 .book-cover-holder {
