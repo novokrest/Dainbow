@@ -3,16 +3,19 @@ version '1.0.0'
 
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.6.RELEASE'
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:+'
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'com.google.cloud.tools.appengine'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -23,6 +26,11 @@ jar {
 }
 
 repositories {
+    maven {
+        url 'https://maven-central.storage.googleapis.com'
+    }
+
+    jcenter()
     mavenCentral()
 }
 
@@ -32,7 +40,17 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-rest'
     compile 'mysql:mysql-connector-java'
     compile 'org.flywaydb:flyway-core'
+    compile 'com.google.appengine:appengine:+'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'junit:junit:4.12'
+}
+
+// Google Cloud Platform
+appengine {
+
+    deploy {   // deploy configuration
+        stopPreviousVersion = true  // default - stop the current version
+        promote = true              // default - & make this the current version
+    }
 }
