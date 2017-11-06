@@ -1,19 +1,17 @@
 package com.oneuse.dainbow.books.application.config.properties;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 
 
-@PropertySource("classpath:database.properties")
+@PropertySource("classpath:database-${spring.profiles.active}.properties")
+@ConfigurationProperties(prefix = "database")
 public class DatabaseProperties {
 
-    @Value("${database.url}")
     private String url;
 
-    @Value("${database.username}")
     private String username;
 
-    @Value("${database.password}")
     private String password;
 
     public String getUrl() {
@@ -26,5 +24,17 @@ public class DatabaseProperties {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
