@@ -40,11 +40,11 @@ class OverviewBookComponent extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <main className="col-md-10 offset-md-2 pt-3">
+                    <div className="col-sm-10 col-sm-offset-1 main">
                         <BookTitleHeaderComponent title={book.title} />
                         {bookOverview}
                         {pageCardTable}
-                    </main>
+                    </div>
                 </div>
             </div>
         );
@@ -60,15 +60,13 @@ class OverviewBookComponent extends React.Component {
 
     generatePageCard(pageNumber) {
         const isPageRead = this.isPageRead(pageNumber);
-        const cardClass = isPageRead ? "card-inverse card-info" : "card-outline-info";
+        const cardClass = isPageRead ? "btn-primary" : "btn-outline-primary";
         return (
-            <div className={`card ${cardClass} text-center`}>
-                <div>
-                    <blockquote className="card-blockquote">
-                        {pageNumber}
-                    </blockquote>
+            <button type="button" className={`btn ${cardClass} btn-block`}>
+                <div className="text-center">
+                    {pageNumber}
                 </div>
-            </div>
+            </button>
         );
     }
 
@@ -115,7 +113,7 @@ class OverviewBookComponent extends React.Component {
                 </div>
                 <div className="top-buffer">
                     <Link to={RouteService.getLogReadActivityRoute(book.id)} 
-                          className="overview-log-btn btn btn-outline-primary">
+                          className="overview-log-btn btn btn-primary">
                         Log Read Activity
                     </Link>
                 </div>

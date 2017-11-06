@@ -4,71 +4,39 @@
         <link rel="stylesheet" type="text/css" href="node_modules/tether/dist/css/tether.min.css">
         <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="css/sandbox.css">
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                <img class="card-img-top card-img-test center-block" src="http://freedesignfile.com/upload/2015/06/Brochure-and-book-cover-creative-vector-06.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-                </div>
-                <div class="col-lg-4">
-                <img class="card-img-top card-img-test" src="http://freedesignfile.com/upload/2015/06/Brochure-and-book-cover-creative-vector-06.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-                </div>
-                <div class="col-lg-4">
-                <img class="card-img-top card-img-test" src="http://freedesignfile.com/upload/2015/06/Brochure-and-book-cover-creative-vector-06.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker3'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                    <div class="col-lg-4">
-                    <img class="card-img-top card-img-test center-block" src="http://freedesignfile.com/upload/2015/06/Brochure-and-book-cover-creative-vector-06.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    </div>
-                    <div class="col-lg-4">
-                    <img class="card-img-top card-img-test" src="http://freedesignfile.com/upload/2015/06/Brochure-and-book-cover-creative-vector-06.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    </div>
-                    <div class="col-lg-4">
-                    <img class="card-img-top card-img-test" src="http://freedesignfile.com/upload/2015/06/Brochure-and-book-cover-creative-vector-06.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    </div>
-                </div>
         </div>
 
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/moment/min/moment.min.js"></script>
         <script src="node_modules/tether/dist/js/tether.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script>
-            $('.input-group.date').datepicker({
-                format: "dd/mm/yyyy"
+        <script src="node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript">
+            $(() => {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+                $('#datetimepicker3').on('dp.change', e => {
+                    console.log('e=', e.date);
+                });
             });
         </script>
     </body>

@@ -83,7 +83,7 @@ class LogReadActivityComponent extends React.Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <main className="col-md-10 offset-md-2 pt-3">
+                    <main className="col-sm-10 col-sm-offset-1 pt-3">
                         <BookTitleHeaderComponent title={book.title} />
                         <form>
                             <PageInputComponent id="begin-page" label="Begin Page" page={this.state.beginPage} updateState={this.updateBeginPage} />
@@ -108,15 +108,15 @@ class PageInputComponent extends React.Component {
     }
 
     handleChange(e) {
-        const page = parseInt(e.target.value);
+        const page = e.target.value ? parseInt(e.target.value) : '';
         this.props.updateState(page);
     }
 
     render() {
         return (
             <div className="form-group row">
-                <label htmlFor={`${this.props.id}-input`} className="col-2 col-form-label">{this.props.label}:</label>
-                <div className="col-10">
+                <label htmlFor={`${this.props.id}-input`} className="col-sm-2">{this.props.label}:</label>
+                <div className="col-sm-4">
                     <input className="form-control" type="number" id={`${this.props.id}-input`} placeholder="1" 
                            value={this.props.page} onChange={this.handleChange}/>
                 </div>
@@ -147,13 +147,13 @@ class DatePickerComponent extends React.Component {
     render() {
         return (
             <div className="form-group row">
-                <label htmlFor={`${this.props.id}-input`} className="col-2 col-form-label">{this.props.label}:</label>
-                <div className="col-4">
+                <label htmlFor={`${this.props.id}-input`} className="col-sm-2 col-form-label">{this.props.label}:</label>
+                <div className="col-sm-4">
                     <div className="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                         <input type="text" className="form-control" id={`${this.props.id}-input`}
                                value={this.formatDate(this.props.date)} onChange={this.handleChange} />
                         <div className="input-group-addon">
-                            <span className="glyphicon glyphicon-th"></span>
+                            <span className="glyphicon glyphicon-calendar"></span>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,21 @@ class TimePickerComponent extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentDidMount() {
+        const id = `#${this.props.id}-input`;
+        $(() => {
+            $(id).datetimepicker({
+                format: 'LT'
+            });
+            $(`${id} input`).change(e => {
+                console.log('on:', e);
+            });
+            
+        });
+    }
+
     handleChange(e) {
+        console.log('time=', e.target.value);
         const time = Date.parse(e.target.value);
         this.props.updateState(time);
     }
@@ -187,10 +201,15 @@ class TimePickerComponent extends React.Component {
     render() {
         return (
             <div className="form-group row">
-                <label htmlFor={`${this.props.id}-input`} className="col-2 col-form-label">{this.props.label}:</label>
-                <div className="col-4">
-                    <input className="form-control" type="time" id={`${this.props.id}-input`}
-                           value={this.formatTime(this.props.time)} onChange={this.handleChange} />
+                <label htmlFor={`${this.props.id}-input`} className="col-sm-2 col-form-label">{this.props.label}:</label>
+                <div className="col-sm-4">
+                    <div className='input-group date' id={`${this.props.id}-input`} value={this.formatTime(this.props.time)} onChange={this.handleChange}>
+                        <input type='text' className="form-control" 
+                               value={this.formatTime(this.props.time)} onChange={this.handleChange} />
+                        <span className="input-group-addon">
+                            <span className="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
                 </div>
             </div>
         );

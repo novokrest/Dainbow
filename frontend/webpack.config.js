@@ -62,15 +62,28 @@ module.exports = {
         new CleanWebpackPlugin([distDirPath]),
         new CopyWebpackPlugin([
             { from: 'node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
+
+            { from: 'node_modules/moment/min/moment.min.js', to: 'js/moment.min.js'},
+
+            { from: 'node_modules/bootstrap/js/collapse.js', to: 'js/collapse.js'},
+
+            { from: 'node_modules/bootstrap/js/transition.js', to: 'js/transition.js'},
             
             { from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to: 'css/bootstrap.min.css' },
             { from: 'node_modules/bootstrap/dist/js/bootstrap.min.js', to: 'js/bootstrap.min.js' },
+
+            { from: 'node_modules/bootstrap/dist/fonts', to: 'fonts'},
             
             { from: 'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css', to: 'css/bootstrap-datepicker3.min.css' },
             { from: 'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js', to: 'js/bootstrap-datepicker.min.js' },
 
+            { from: 'node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js', to: 'js/bootstrap-datetimepicker.min.js'},
+            { from: 'node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css', to: 'css/bootstrap-datetimepicker.min.css'},
+
             { from: 'node_modules/tether/dist/css/tether.min.css', to: 'css/tether.min.css' },
             { from: 'node_modules/tether/dist/js/tether.min.js', to: 'js/tether.min.js' },
+
+            { from: 'makeup/src/js/main.js', to: 'js/main.js' },
 
             //TODO: use require('*.css') and loaders
             { from: path.join(makeupCss, 'main.css'), to: 'css/main.css' },

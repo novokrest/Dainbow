@@ -68,7 +68,7 @@ class Books extends React.Component {
 
         const bookCardChunks = toChunks(bookCards, this.state.booksPerRow);
         const bookCardGroups = _.map(bookCardChunks, (bookCardChunk, i) => 
-            <div key={i} className="row .row-eq-height top-buffer">
+            <div key={i} className="row row-eq-height top-buffer">
                 {bookCardChunk}
             </div>
         );
@@ -94,17 +94,15 @@ class BookComponent extends React.Component {
         return (
             <div >
                 <div className='book-cover-holder'>
-                    <a className="thumbnail" href="#">
+                    <Link to={RouteService.getOverviewBookRoute(book.id)} className="thumbnail">
                         <img className="book-cover center-block" width="100%" src={imgSrc} alt="cover" />
-                    </a>
+                    </Link>
                 </div>
-                <div className="card-block">
-                    <h4>{this.props.book.title}</h4>
-                    <h5>{this.props.book.author}</h5>
-                    <div className='book-card-footer'>
-                        <BookProgressComponent readProgress={this.props.readProgress}/>
-                        <Link to={RouteService.getOverviewBookRoute(book.id)} className="book-more btn btn-primary pull-right">More</Link>
-                    </div>
+                <h4>{this.props.book.title}</h4>
+                <h5>{this.props.book.author}</h5>
+                <div className='book-card-footer pull-down'>
+                    <BookProgressComponent readProgress={this.props.readProgress}/>
+                    <Link to={RouteService.getOverviewBookRoute(book.id)} className="book-more btn btn-primary pull-right">More</Link>
                 </div>
             </div>
         );
