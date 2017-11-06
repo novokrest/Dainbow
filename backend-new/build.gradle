@@ -39,6 +39,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-starter-data-rest'
     compile 'mysql:mysql-connector-java'
+    compile 'com.google.cloud.sql:mysql-socket-factory:1.0.4'
     compile 'org.flywaydb:flyway-core'
     compile 'com.google.appengine:appengine:+'
 
