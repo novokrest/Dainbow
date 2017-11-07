@@ -56,7 +56,7 @@ class ApiClient {
 
     postReadActivity(readActivity, callback) {
         console.log('Post read activity:', readActivity);
-        this._postUrl('/history', response => {
+        this._postUrl('/history', readActivity, response => {
             console.log('Post read activity response:', response);
             callback(response.entity);
         });

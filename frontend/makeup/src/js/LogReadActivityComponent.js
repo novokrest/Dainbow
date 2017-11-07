@@ -6,6 +6,8 @@ const BookTitleHeaderComponent = require('./BookTitleHeaderComponent').BookTitle
 const ApiClient = require('./api-client').ApiClient;
 const RouteService = require('./routes').RouteService;
 
+const dateformat = require('dateformat');
+
 class LogReadActivityComponent extends React.Component {
 
     constructor(props) {
@@ -65,21 +67,24 @@ class LogReadActivityComponent extends React.Component {
     }
 
     buildReadActivity() {
+        const mBegin = this.state.beginTime;
+        const mEnd = this.state.endTime;
+
         return {
             bookId: this.state.book.id,
             beginPage: this.state.beginPage,
             endPage: this.state.endPage,
-            beginTime: this.state.beginTime,
-            endTime: this.state.endTime
+            beginTime: this.formatIso(this.state.date, this.state.beginTime),
+            endTime: this.formatIso(this.state.date, this.state.endTime)
         };
+    }
+
+    formatIso(date, time) {
+        return `${dateformat(date, 'yyyy-mm-dd')}T${time.format('HH:mm:ss.SSS')}`;
     }
 
     render() {
         const book = this.state.book;
-        const nowDt = new Date();
-        const formattedNowDate = `${nowDt.getFullYear()}-${nowDt.getMonth() + 1}-${nowDt.getDate()}`;
-        const formattedNowSeconds = nowDt.getSeconds() < 10 ? `0${nowDt.getSeconds()}` : nowDt.getSeconds().toString();
-        const formattedNowTime = `${nowDt.getHours()}:${nowDt.getMinutes()}:${formattedNowSeconds}`;
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -170,32 +175,22 @@ class TimePickerComponent extends React.Component {
     }
 
     componentDidMount() {
+        const that = this;
         const id = `#${this.props.id}-input`;
         $(() => {
             $(id).datetimepicker({
                 format: 'LT'
             });
-            $(`${id} input`).change(e => {
-                console.log('on:', e);
+            $(id).on('dp.change', e => {
+                this.handleChange(e.date);
             });
             
         });
     }
 
-    handleChange(e) {
-        console.log('time=', e.target.value);
-        const time = Date.parse(e.target.value);
+    handleChange(date) {
+        const time = moment(date.format('HH:mm:ss.SSS'), 'HH:mm:ss.SSS');
         this.props.updateState(time);
-    }
-
-    formatTime(time) {
-        if (!time) {
-            return time;
-        }
-        const hours = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
-        const minutes = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();
-        return `${hours}:${minutes}`;
-        return time;
     }
 
     render() {
@@ -203,9 +198,8 @@ class TimePickerComponent extends React.Component {
             <div className="form-group row">
                 <label htmlFor={`${this.props.id}-input`} className="col-sm-2 col-form-label">{this.props.label}:</label>
                 <div className="col-sm-4">
-                    <div className='input-group date' id={`${this.props.id}-input`} value={this.formatTime(this.props.time)} onChange={this.handleChange}>
-                        <input type='text' className="form-control" 
-                               value={this.formatTime(this.props.time)} onChange={this.handleChange} />
+                    <div className='input-group date' id={`${this.props.id}-input`}>
+                        <input type='text' className="form-control" />
                         <span className="input-group-addon">
                             <span className="glyphicon glyphicon-time"></span>
                         </span>
