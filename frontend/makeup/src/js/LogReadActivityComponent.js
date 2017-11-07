@@ -15,9 +15,9 @@ class LogReadActivityComponent extends React.Component {
         this.id = props.match.params.id;
         this.state = { 
             book: {}, 
-            beginPage: '', endPage: '', 
+            beginPage: '1', endPage: '1', 
             date: new Date(), 
-            beginTime: new Date(), endTime: new Date() 
+            beginTime: moment(), endTime: moment() 
         };
 
         this.updateBeginPage = this.updateBeginPage.bind(this);
@@ -199,7 +199,7 @@ class TimePickerComponent extends React.Component {
                 <label htmlFor={`${this.props.id}-input`} className="col-sm-2 col-form-label">{this.props.label}:</label>
                 <div className="col-sm-4">
                     <div className='input-group date' id={`${this.props.id}-input`}>
-                        <input type='text' className="form-control" />
+                        <input type='text' className="form-control" value={this.props.time.format('HH:mm')} />
                         <span className="input-group-addon">
                             <span className="glyphicon glyphicon-time"></span>
                         </span>
