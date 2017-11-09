@@ -33,7 +33,12 @@ class RouteService {
 
     getLogReadActivityRoute(id) {
         const param = id ? id : ':id';
-        return `${baseApiUrl}/books/${param}/log-read-activity`
+        return `${baseApiUrl}/books/${param}/log-read-activity`;
+    }
+
+    getViewReadActivitiesRoute(id) {
+        const param = id ? id : ':id';
+        return `${baseApiUrl}/books/${param}/view-read-activites`;
     }
 };
 

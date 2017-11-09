@@ -68,3 +68,13 @@ body {
 .book-card-footer {
 
 }
+
+.read-activity-table.table>tbody>tr>td, 
+.read-activity-table.table>tbody>tr>th, 
+.read-activity-table.table>tfoot>tr>td, 
+.read-activity-table.table>tfoot>tr>th, 
+.read-activity-table.table>thead>tr>td, 
+.read-activity-table.table>thead>tr>th {
+   text-align: center;   
+   vertical-align: middle;
+}

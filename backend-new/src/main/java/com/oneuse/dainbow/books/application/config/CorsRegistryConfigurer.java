@@ -15,7 +15,8 @@ public class CorsRegistryConfigurer {
                 .allowedOrigins(frontendServerUrl)
                 .allowedMethods(
                         "GET",
-                        "POST"
+                        "POST",
+                        "DELETE"
                 )
                 .allowedHeaders(
                         "Content-Type",

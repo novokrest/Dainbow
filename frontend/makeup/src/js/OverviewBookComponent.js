@@ -40,7 +40,26 @@ class OverviewBookComponent extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-10 col-sm-offset-1 main">
+                    <div className="col-sm-3 col-md-2 sidebar">
+                        <ul className="nav nav-sidebar">
+                            <li className="active">
+                                <a href="#">Overview <span className="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                        <ul className="nav nav-sidebar">
+                            <li>
+                                <Link to={RouteService.getViewReadActivitiesRoute(book.id)}>
+                                    View Read Activities
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={RouteService.getLogReadActivityRoute(book.id)}>
+                                    Log Read Activity
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="col-sm-9 col-md-10 main">
                         <BookTitleHeaderComponent title={book.title} />
                         {bookOverview}
                         {pageCardTable}

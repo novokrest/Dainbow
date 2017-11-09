@@ -6,6 +6,7 @@ import { RouteService } from './routes';
 const ListBooksComponent = require('./ListBooksComponent').ListBooksComponent;
 const OverviewBookComponent = require('./OverviewBookComponent').OverviewBookComponent;
 const LogReadActivityComponent = require('./LogReadActivityComponent').LogReadActivityComponent;
+const ViewReadActivitiesComponent = require('./ViewReadActivitiesComponent').ViewReadActivitiesComponent;
 const AddBookComponent = require('./AddBookComponent').AddBookComponent;
 
 const Header = () => (
@@ -55,6 +56,7 @@ const Main = () => (
             <Route exact path={RouteService.getAddBookRoute()} component={AddBookComponent} />
             <Route exact path={RouteService.getOverviewBookRoute()} component={OverviewBookComponent} />
             <Route exact path={RouteService.getLogReadActivityRoute()} component={LogReadActivityComponent} />
+            <Route exact path={RouteService.getViewReadActivitiesRoute()} component={ViewReadActivitiesComponent} />
         </Switch>
     </main>
 );

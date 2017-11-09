@@ -62,6 +62,14 @@ class ApiClient {
         });
     }
 
+    deleteReadActivity(id, callback) {
+        console.log('Delete read activity:', id);
+        this._deleteUrl(`/history/${id}`, () => {
+            console.log('Read activity was deleted:', id);
+            callback();
+        })
+    }
+
     _postUrl(path, entity, callback) {
         client({ method: 'POST', path: this.absoluteUrl(path), entity: entity }).done(response => {
             callback(response);
@@ -71,6 +79,12 @@ class ApiClient {
     _getUrl(path, callback) {
         client({ method: 'GET', path: this.absoluteUrl(path) }).done(response => {
             callback(response);
+        });
+    }
+
+    _deleteUrl(path, callback) {
+        client({ method: 'DELETE', path: this.absoluteUrl(path) }).done(response => {
+            callback();
         });
     }
 
