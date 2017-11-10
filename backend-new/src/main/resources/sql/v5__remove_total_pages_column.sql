@@ -1,1 +1,1 @@
-ALTER TABLE BOOK_READ_PROGRESS DROP COLUMN total_pages_count;
+ALTER TABLE book_read_progress DROP COLUMN total_pages_count;
