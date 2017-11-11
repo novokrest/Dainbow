@@ -15,7 +15,7 @@ CREATE TABLE book_read_history
     end_page INT NOT NULL,
     begin_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     end_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY fk_book_id(book_id) REFERENCES BOOK(id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY fk_book_id(book_id) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE book_read_progress
@@ -24,5 +24,5 @@ CREATE TABLE book_read_progress
     book_id INT NOT NULL,
     read_pages_count INT,
     total_pages_count INT,
-    FOREIGN KEY fk_book_id(book_id) REFERENCES BOOK(id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY fk_book_id(book_id) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
