@@ -1,18 +1,19 @@
 package com.oneuse.dainbow.books.application.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.oneuse.dainbow.books.application.config.properties.FrontendProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import java.util.concurrent.TimeUnit;
 
 public class CorsRegistryConfigurer {
 
-    @Value("${frontend.server.url}")
-    private String frontendServerUrl;
+    @Autowired
+    FrontendProperties frontendProperties;
 
     public void configureCors(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
-                .allowedOrigins(frontendServerUrl)
+                .allowedOrigins(frontendProperties.getUrl())
                 .allowedMethods(
                         "GET",
                         "POST",

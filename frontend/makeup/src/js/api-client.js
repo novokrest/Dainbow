@@ -1,10 +1,11 @@
+const configuration = require('react-global-configuration');
 const client = require('./client');
 const _ = require('lodash');
 
 class ApiClient {
 
     static default() {
-        return new ApiClient('http://localhost:8091/api/v1/read');
+        return new ApiClient(configuration.get('apiUrl'));
     }
 
     constructor(apiUrl) {

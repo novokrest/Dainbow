@@ -1,8 +1,8 @@
 {
     "server": {
         "port": 8080,
-        "rootUrl": "/dainbow/react"
+        "rootUrl": "/react"
     },
     "stubMode": false,
-    "apiUrl": "http://localhost:8091/api/v1/read"
+    "apiUrl": "https://react-185116.appspot.com/api/v1/read"
 }
