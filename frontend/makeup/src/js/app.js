@@ -8,6 +8,7 @@ const OverviewBookComponent = require('./OverviewBookComponent').OverviewBookCom
 const LogReadActivityComponent = require('./LogReadActivityComponent').LogReadActivityComponent;
 const ViewReadActivitiesComponent = require('./ViewReadActivitiesComponent').ViewReadActivitiesComponent;
 const AddBookComponent = require('./AddBookComponent').AddBookComponent;
+const RemoveBookComponent = require('./RemoveBookComponent').RemoveBookComponent;
 
 const Header = () => (
 
@@ -54,6 +55,7 @@ const Main = () => (
         <Switch>
             <Route exact path={RouteService.getBooksRoute()} component={ListBooksComponent} />
             <Route exact path={RouteService.getAddBookRoute()} component={AddBookComponent} />
+            <Route exact path={RouteService.getRemoveBookRoute()} component={RemoveBookComponent} />
             <Route exact path={RouteService.getOverviewBookRoute()} component={OverviewBookComponent} />
             <Route exact path={RouteService.getLogReadActivityRoute()} component={LogReadActivityComponent} />
             <Route exact path={RouteService.getViewReadActivitiesRoute()} component={ViewReadActivitiesComponent} />

@@ -2,6 +2,7 @@
 
 const React = require('react');
 const ReactDOM = require('react-dom');
+const BookTitleHeaderComponent = require('./BookTitleHeaderComponent').BookTitleHeaderComponent;
 const RouteService = require('./routes').RouteService;
 const ApiClient = require('./api-client').ApiClient;
 
@@ -87,13 +88,20 @@ class AddBookComponent extends React.Component {
 
     render() {
         return (
-            <form className="form-horizontal">
-                <BookTitle title={this.state.title} updateState={this.updateTitle} />
-                <BookAuthor author={this.state.author} updateState={this.updateAuthor} />
-                <BookTotalPages totalPages={this.state.totalPages} updateState={this.updateTotalPages} />
-                <BookReadPages readPages={this.state.readPages} updateState={this.updateReadPages} />
-                <AddBookButton onClick={this.onAddButtonClick} />
-            </form>
+            <div className="container-fluid">
+                <div className="row">
+                    <main className="col-sm-10 col-sm-offset-1 pt-3">
+                        <BookTitleHeaderComponent title="Add Book" />
+                        <form>
+                            <BookTitle title={this.state.title} updateState={this.updateTitle} />
+                            <BookAuthor author={this.state.author} updateState={this.updateAuthor} />
+                            <BookTotalPages totalPages={this.state.totalPages} updateState={this.updateTotalPages} />
+                            <BookReadPages readPages={this.state.readPages} updateState={this.updateReadPages} />
+                            <AddBookButton onClick={this.onAddButtonClick} />
+                        </form>
+                    </main>
+                </div>
+            </div>
         );
     }
 }

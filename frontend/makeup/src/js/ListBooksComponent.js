@@ -39,8 +39,8 @@ class ListBooksComponent extends React.Component {
                             which are in the reading process and which will be read
                         </p>
                         <p>
-                            <a className="btn btn-primary" href="#">Add</a>
-                            <a className="btn btn-secondary" href="#">Remove</a>
+                            <Link className="btn btn-primary" to={RouteService.getAddBookRoute()}>Add</Link>
+                            <Link className="btn btn-secondary" to={RouteService.getRemoveBookRoute()}>Remove</Link>
                         </p>
                     </div>
                 </section>

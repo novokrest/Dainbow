@@ -24,8 +24,10 @@ class ApiClient {
     }
 
     getBooks(callback) {
+        console.log('Retrieve books...');
         this._getUrl('/books', response => {
             var books = response.entity._embedded.books;
+            console.log('Books were retrieved:', books.length);
             callback(books);
         });
     }
@@ -39,6 +41,13 @@ class ApiClient {
 
     postBook(book, callback) {
         this._postUrl('/books', book, callback);
+    }
+
+    deleteBook(id, callback) {
+        this._deleteUrl(`/books/${id}`, () => {
+            console.log('Book was deleted: {}', id);
+            callback(id);
+        });
     }
 
     getHistory(callback) {
