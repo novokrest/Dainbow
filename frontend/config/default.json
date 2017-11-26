@@ -4,5 +4,5 @@
         "rootUrl": "/react"
     },
     "stubMode": false,
-    "apiUrl": "https://react-185116.appspot.com/api/v1/read"
+    "apiUrl": ""
 }
