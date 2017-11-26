@@ -12,7 +12,7 @@ import java.util.List;
 @RestResource(path = "history", rel = "history")
 public interface BookReadHistoryRepository extends PagingAndSortingRepository<BookReadActivityEntity, Long> {
 
-    @RestResource(path = "book", rel = "book")
+//    @RestResource(path = "book", rel = "book")
     List<BookReadActivityEntity> findByBookId(@Param("bookId") Long bookId);
 }
 
