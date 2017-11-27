@@ -3,6 +3,7 @@ package com.oneuse.dainbow.books.application.repository;
 import com.oneuse.dainbow.books.application.TestConfig;
 import com.oneuse.dainbow.books.application.config.ApplicationConfig;
 import com.oneuse.dainbow.books.application.entity.BookEntity;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertNotNull;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import({ApplicationConfig.class, TestConfig.class})

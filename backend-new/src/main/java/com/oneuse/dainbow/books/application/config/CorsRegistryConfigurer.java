@@ -13,7 +13,7 @@ public class CorsRegistryConfigurer {
 
     public void configureCors(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
-                .allowedOrigins(frontendProperties.getUrl())
+                .allowedOrigins(frontendProperties.getUrls().toArray(new String[0]))
                 .allowedMethods(
                         "GET",
                         "POST",
