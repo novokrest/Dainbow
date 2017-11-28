@@ -29,7 +29,7 @@ module.exports = {
     devtool: 'source-map',
     cache: true,
 
-    watch: false && NODE_DEV == 'dev',
+    watch: NODE_DEV == 'dev',
     watchOptions: {
         aggregateTimeout: 100,
         ignored: /node_modules/

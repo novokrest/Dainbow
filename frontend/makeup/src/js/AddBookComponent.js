@@ -13,11 +13,11 @@ class AddBookComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { title: '', author: '', totalPages: '', readPages: '' };
+        this.state = { title: '', author: '', totalPagesCount: '', readPages: '' };
 
         this.updateTitle = this.updateTitle.bind(this);
         this.updateAuthor = this.updateAuthor.bind(this);
-        this.updateTotalPages = this.updateTotalPages.bind(this);
+        this.updateTotalPagesCount = this.updateTotalPagesCount.bind(this);
         this.updateReadPages = this.updateReadPages.bind(this);
         this.onAddButtonClick = this.onAddButtonClick.bind(this);
     }
@@ -30,8 +30,8 @@ class AddBookComponent extends React.Component {
         this.setState({ author: author }, () => console.log('Author was updated:', this.state));
     }
 
-    updateTotalPages(totalPages) {
-        this.setState({ totalPages: totalPages }, () => console.log('Total pages was updated:', this.state));
+    updateTotalPagesCount(totalPagesCount) {
+        this.setState({ totalPagesCount: totalPagesCount }, () => console.log('Total pages was updated:', this.state));
     }
 
     updateReadPages(readPages) {
@@ -95,7 +95,7 @@ class AddBookComponent extends React.Component {
                         <form>
                             <BookTitle title={this.state.title} updateState={this.updateTitle} />
                             <BookAuthor author={this.state.author} updateState={this.updateAuthor} />
-                            <BookTotalPages totalPages={this.state.totalPages} updateState={this.updateTotalPages} />
+                            <BookTotalPages totalPagesCount={this.state.totalPagesCount} updateState={this.updateTotalPagesCount} />
                             <BookReadPages readPages={this.state.readPages} updateState={this.updateReadPages} />
                             <AddBookButton onClick={this.onAddButtonClick} />
                         </form>
@@ -179,9 +179,9 @@ class BookTotalPages extends React.Component {
         const value = e.target.value;
         console.log('value:', value);
         if (this.validate(value)) {
-            const totalPages = parseInt(value, 10);
-            console.log('totalPages:', totalPages);
-            this.props.updateState(totalPages);
+            const totalPagesCount = parseInt(value, 10);
+            console.log('totalPagesCount:', totalPagesCount);
+            this.props.updateState(totalPagesCount);
         }
     }
 
@@ -197,7 +197,7 @@ class BookTotalPages extends React.Component {
                 </label>
                 <div className="col-sm-10">
                     <input id="book-total-pages-count" className="form-control" type="number" min="0"
-                        value={this.props.totalPages} onChange={this.handleChange}
+                        value={this.props.totalPagesCount} onChange={this.handleChange}
                         placeholder="e.g. 512"
                         aria-describedby="book-total-pages-count-description" />
                     <small id="book-total-pages-count-description" className="form-text text-muted">
@@ -289,43 +289,6 @@ class AddBookButton extends React.Component {
         );
     }
 }
-
-$(function() {
-    var readPagesIntervalRegex = /^\d+\s*(-\s*\d+)?$/g,
-        readPagesBeginIntervalRegex = /^\d+\s*(-\s*)?$/g;
-    $('#book-read-pages').keypress(function(e) {
-        
-    });
-
-    $('#book-add').click(function(e) {
-        var title = $('#book-title').val();
-        var author = $('#book-author').val();
-        var totalPagesCount = $('#book-total-pages-count').val();
-        var readPages = $('#book-read-pages').val();
-
-        
-
-        var data = {
-            title: title,
-            author: author,
-            totalPagesCount: totalPagesCount,
-            readProgress: { readPagesCount: readPagesCount },
-            readHistories: readActivities
-        };
-
-        console.log('Sending request:', data);
-
-        $(this).blur();
-    });
-
-    function extractReadActivities(opaque) {
-        
-    }
-
-    function calculateReadPagesCount(readActivities) {
-        return readActivities.reduce((sum, readActivity) => sum + (readActivity.endPage - readActivity.beginPage + 1), 0);
-    }
-});
 
 module.exports = {
     AddBookComponent: AddBookComponent
