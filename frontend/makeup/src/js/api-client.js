@@ -43,6 +43,10 @@ class ApiClient {
         this._postUrl('/books', book, callback);
     }
 
+    addBook(addBookData, callback) {
+        this._postUrl('/books/add', addBookData, callback);
+    }
+
     deleteBook(id, callback) {
         this._deleteUrl(`/books/${id}`, () => {
             console.log('Book was deleted: {}', id);

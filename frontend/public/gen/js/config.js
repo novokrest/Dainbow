@@ -1,1 +1,1 @@
-window.__INITIAL_CONFIG__ = {"server":{"port":8080,"rootUrl":"\u002Freact"},"stubMode":false,"apiUrl":"http:\u002F\u002Fec2-18-217-94-2.us-east-2.compute.amazonaws.com:8080\u002Fapi\u002Fv1\u002Fread"};
+window.__INITIAL_CONFIG__ = {"server":{"port":8081,"rootUrl":"\u002Freact"},"stubMode":false,"apiUrl":"http:\u002F\u002Flocalhost:8080\u002Fapi\u002Fv1\u002Fread"};

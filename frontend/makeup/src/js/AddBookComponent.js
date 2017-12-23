@@ -42,7 +42,7 @@ class AddBookComponent extends React.Component {
         console.log('onAddButtonClick()', this.state);
         const book = this.buildSendingBookData();
         console.log('Book data to send:', book);
-        ApiClient.postBook(book, () => {
+        ApiClient.addBook(book, () => {
             console.log('Request has been sent successfully');
             // TODO: implement proper navigation
             RouteService.navigateToBooksRoute(this.props.history);
@@ -57,8 +57,8 @@ class AddBookComponent extends React.Component {
             title: this.state.title,
             author: this.state.author,
             totalPagesCount: this.state.totalPagesCount,
-            readProgress: { readPagesCount: readPagesCount },
-            readHistories: readActivities
+            readPagesCount: readPagesCount,
+            readActivities: readActivities
         };
 
         return data;
