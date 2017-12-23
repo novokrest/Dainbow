@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.6.RELEASE'
         classpath 'com.google.cloud.tools:appengine-gradle-plugin:+'
+        classpath 'nu.studer:gradle-jooq-plugin:2.0.9'
     }
 }
 
@@ -16,6 +17,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'com.google.cloud.tools.appengine'
+apply plugin: 'nu.studer.jooq'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -44,9 +46,47 @@ dependencies {
     compile 'com.google.guava:guava:19.0'
     compile 'org.apache.commons:commons-lang3:3.7'
     compile 'com.google.appengine:appengine:+'
+    compile 'org.jooq:jooq'
+    compile 'io.swagger:swagger-annotations:1.5.17'
+
+
+    jooqRuntime 'mysql:mysql-connector-java:6.0.6'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'junit:junit:4.12'
+}
+
+jooq {
+    version = '3.10.1'
+    edition = 'OSS'
+    compile(sourceSets.main) {
+        jdbc {
+            driver = 'com.mysql.cj.jdbc.Driver'
+            url = 'jdbc:mysql://localhost:3306/book_dev_db?useSSL=false&serverTimezone=Europe/Moscow'
+            user = 'root'
+            password = '123'
+        }
+        generator {
+            name = 'org.jooq.util.DefaultGenerator'
+            strategy {
+                name = 'org.jooq.util.DefaultGeneratorStrategy'
+            }
+            database {
+                name = 'org.jooq.util.mysql.MySQLDatabase'
+                inputSchema = 'book_dev_db'
+            }
+            generate {
+                relations = true
+                deprecated = false
+                records = true
+                immutablePojos = true
+                fluentSetters = true
+            }
+            target {
+                packageName = 'com.oneuse.dainbow.books.application.jooq'
+            }
+        }
+    }
 }
 
 

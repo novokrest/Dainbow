@@ -9,7 +9,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Import({
         PersistenceConfig.class,
         RepositoryConfig.class,
-        WebConfig.class
+        WebConfig.class,
+        BooksConfiguration.class
 })
 public class ApplicationConfig {
 
