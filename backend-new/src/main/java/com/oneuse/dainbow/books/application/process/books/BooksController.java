@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping(
-        path = "/api/v2/read/books",
+        path = "/api/v1/read/books",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )

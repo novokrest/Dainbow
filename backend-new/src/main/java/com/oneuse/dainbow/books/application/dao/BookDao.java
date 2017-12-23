@@ -16,7 +16,7 @@ public class BookDao {
 
     private static final RecordMapper<BookRecord, BookEntity> MAPPER = record ->
             BookEntity.builder()
-                    .withId(record.getId())
+                    .withId(record.getId().longValue())
                     .withTitle(record.getTitle())
                     .withAuthor(record.getAuthor())
                     .withTotalPagesCount(record.getPagesCount())
@@ -30,7 +30,6 @@ public class BookDao {
 
     public int store(@Nonnull BookEntity entity) {
         return dslContext.insertInto(Tables.BOOK)
-                .set(Tables.BOOK.ID, entity.getId())
                 .set(Tables.BOOK.TITLE, entity.getTitle())
                 .set(Tables.BOOK.AUTHOR, entity.getAuthor())
                 .set(Tables.BOOK.PAGES_COUNT, entity.getTotalPagesCount())

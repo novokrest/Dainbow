@@ -16,8 +16,8 @@ public class BookHistoryDao {
 
     private static final RecordMapper<BookReadHistoryRecord, BookReadActivityEntity> MAPPER = record ->
             BookReadActivityEntity.builder()
-                    .withId(record.getId())
-                    .withBookId(record.getBookId())
+                    .withId(record.getId().longValue())
+                    .withBookId(record.getBookId().longValue())
                     .withBeginPage(record.getBeginPage())
                     .withEndPage(record.getEndPage())
                     .withBeginTime(record.getBeginTime())
@@ -58,7 +58,7 @@ public class BookHistoryDao {
 
     private InsertSetMoreStep<BookReadHistoryRecord> insertIntoStatement(@Nonnull BookReadActivityEntity entity) {
         return dslContext.insertInto(Tables.BOOK_READ_HISTORY)
-                .set(Tables.BOOK_READ_HISTORY.BOOK_ID, (int) entity.getBookId())
+                .set(Tables.BOOK_READ_HISTORY.BOOK_ID, entity.getBookId().intValue())
                 .set(Tables.BOOK_READ_HISTORY.BEGIN_PAGE, entity.getBeginPage())
                 .set(Tables.BOOK_READ_HISTORY.END_PAGE, entity.getEndPage())
                 .set(Tables.BOOK_READ_HISTORY.BEGIN_TIME, entity.getBeginTime())

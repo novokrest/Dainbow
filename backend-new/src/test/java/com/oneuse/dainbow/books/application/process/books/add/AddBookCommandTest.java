@@ -59,7 +59,7 @@ public class AddBookCommandTest {
 
         // when
         MvcResult result = mockMvc
-                .perform(post("/api/v2/read/books/add")
+                .perform(post("/api/v1/read/books/add")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(MAPPER.writeValueAsString(request)))
                 .andExpect(status().isOk())

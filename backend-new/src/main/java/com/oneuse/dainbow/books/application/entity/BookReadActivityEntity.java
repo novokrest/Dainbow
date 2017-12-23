@@ -21,10 +21,10 @@ public class BookReadActivityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "book_id")
-    private Integer bookId;
+    private Long bookId;
 
     @Column(name = "begin_page")
     private Integer beginPage;
@@ -42,8 +42,8 @@ public class BookReadActivityEntity {
 
     }
 
-    private BookReadActivityEntity(Integer id,
-                                   Integer bookId,
+    private BookReadActivityEntity(Long id,
+                                   Long bookId,
                                    Integer beginPage,
                                    Integer endPage,
                                    Timestamp beginTime,
@@ -56,19 +56,19 @@ public class BookReadActivityEntity {
         this.endTime = endTime;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setBookId(Integer bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
 
@@ -136,8 +136,8 @@ public class BookReadActivityEntity {
      */
     public static class Builder {
 
-        private Integer id;
-        private Integer bookId;
+        private Long id;
+        private Long bookId;
         private Integer beginPage;
         private Integer endPage;
         private Timestamp beginTime;
@@ -147,13 +147,13 @@ public class BookReadActivityEntity {
         }
 
         @Nonnull
-        public Builder withId(@Nonnull Integer id) {
+        public Builder withId(@Nonnull Long id) {
             this.id = id;
             return this;
         }
 
         @Nonnull
-        public Builder withBookId(@Nonnull Integer bookId) {
+        public Builder withBookId(@Nonnull Long bookId) {
             this.bookId = bookId;
             return this;
         }

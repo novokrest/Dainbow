@@ -19,7 +19,7 @@ public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "title")
     private String title;
@@ -39,7 +39,7 @@ public class BookEntity {
 
     }
 
-    private BookEntity(Integer id,
+    private BookEntity(Long id,
                        String title,
                        String author,
                        Integer totalPagesCount,
@@ -52,11 +52,11 @@ public class BookEntity {
     }
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -123,7 +123,7 @@ public class BookEntity {
      */
     public static class Builder {
 
-        private Integer id;
+        private Long id;
         private String title;
         private String author;
         private Integer totalPagesCount;
@@ -133,7 +133,7 @@ public class BookEntity {
         }
 
         @Nonnull
-        public Builder withId(@Nonnull Integer id) {
+        public Builder withId(@Nonnull Long id) {
             this.id = id;
             return this;
         }

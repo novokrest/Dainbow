@@ -29,7 +29,7 @@ public class BookService {
         return txTemplate.execute(status -> {
             int bookId = bookDao.store(book);
             bookHistoryDao.store(readActivityList.stream()
-                    .map(readActivity -> BookReadActivityEntity.builder(readActivity).withBookId(bookId).build())
+                    .map(readActivity -> BookReadActivityEntity.builder(readActivity).withBookId((long) bookId).build())
                     .collect(Collectors.toList()));
             return bookId;
         });
