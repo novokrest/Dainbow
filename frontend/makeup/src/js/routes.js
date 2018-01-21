@@ -1,47 +1,31 @@
-import configuration from 'react-global-configuration';
-import { browserHistory } from 'react-router';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { RouteService } from './RouteService';
+import Header from './Header'
 
-configuration.set(window.__INITIAL_CONFIG__);
-const baseApiUrl = configuration.get('server').rootUrl;
+const ListBooksComponent = require('./ListBooksComponent').ListBooksComponent;
+const OverviewBookComponent = require('./OverviewBookComponent').OverviewBookComponent;
+const LogReadActivityComponent = require('./LogReadActivityComponent').LogReadActivityComponent;
+const ViewReadActivitiesComponent = require('./ViewReadActivitiesComponent').ViewReadActivitiesComponent;
+const AddBookComponent = require('./AddBookComponent').AddBookComponent;
+const RemoveBookComponent = require('./RemoveBookComponent').RemoveBookComponent;
 
-class RouteService {
+const Main = () => (
+    <main>
+        <Switch>
+            <Route exact path={RouteService.getBooksRoute()} component={ListBooksComponent} />
+            <Route exact path={RouteService.getAddBookRoute()} component={AddBookComponent} />
+            <Route exact path={RouteService.getRemoveBookRoute()} component={RemoveBookComponent} />
+            <Route exact path={RouteService.getOverviewBookRoute()} component={OverviewBookComponent} />
+            <Route exact path={RouteService.getLogReadActivityRoute()} component={LogReadActivityComponent} />
+            <Route exact path={RouteService.getViewReadActivitiesRoute()} component={ViewReadActivitiesComponent} />
+        </Switch>
+    </main>
+);
 
-    getBooksRoute() {
-        return `${baseApiUrl}/books`;
-    }
-
-    navigateToBooksRoute(history) {
-        history.push(this.getBooksRoute());
-    }
-
-    getAddBookRoute() {
-        return `${baseApiUrl}/books/add`;
-    }
-
-    getRemoveBookRoute() {
-        return `${baseApiUrl}/books/remove`;
-    }
-
-    getOverviewBookRoute(id) {
-        const param = id ? id : ':id';
-        return `${baseApiUrl}/books/${param}`;
-    }
-
-    navigateOverviewBookRoute(history, id) {
-        history.push(this.getOverviewBookRoute(id));
-    }
-
-    getLogReadActivityRoute(id) {
-        const param = id ? id : ':id';
-        return `${baseApiUrl}/books/${param}/log-read-activity`;
-    }
-
-    getViewReadActivitiesRoute(id) {
-        const param = id ? id : ':id';
-        return `${baseApiUrl}/books/${param}/view-read-activites`;
-    }
-};
-
-module.exports = {
-    RouteService: new RouteService()
-};
+export default () => (
+    <Router>
+        <Header />
+        <Main />
+    </Router>
+);
