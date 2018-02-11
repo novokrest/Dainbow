@@ -25,16 +25,24 @@ repositories {
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-security') {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-	}
-	compile('org.springframework.security.oauth:spring-security-oauth2')
+
 	compile('org.springframework.boot:spring-boot-starter-web') {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
 	compile('org.springframework.boot:spring-boot-starter-log4j2')
 
+	compile('org.springframework.boot:spring-boot-starter-security') {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+	compile('org.springframework.security.oauth:spring-security-oauth2')
+
+	compile('org.webjars:jquery:2.1.1')
+	compile('org.webjars:bootstrap:3.2.0')
+	compile('org.webjars:js-cookie:2.1.0')
+	compile('org.webjars:webjars-locator')
+
 	runtime('mysql:mysql-connector-java')
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 }

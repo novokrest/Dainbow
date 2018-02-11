@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @Configuration
-public class RequestLogginFilterConfig {
+public class RequestLoggingFilterConfig {
 
     @Bean
     public CommonsRequestLoggingFilter logFilter() {
@@ -14,7 +14,7 @@ public class RequestLogginFilterConfig {
         filter.setIncludePayload(true);
         filter.setMaxPayloadLength(10000);
         filter.setIncludeHeaders(false);
-        filter.setAfterMessagePrefix("REQUEST DATA : ");
+        filter.setAfterMessagePrefix("Request: ");
         return filter;
     }
 }
