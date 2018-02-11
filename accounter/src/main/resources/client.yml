@@ -1,0 +1,13 @@
+server:
+  port: 30006
+  context-path: /client
+
+security:
+  oauth2:
+    client:
+      client-id: inner
+      client-secret: innersecret
+      access-token-uri: http://localhost:30005/oauth/token
+      user-authorization-uri: http://localhost:30005/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:30005/me

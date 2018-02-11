@@ -3,7 +3,18 @@ server:
   # contextPath: /dainbow/accounter
 
 security:
+  user:
+    password: usersecret
   oauth2:
+    client:
+      client-id: inner
+      client-secret: innersecret
+      scope: read,write
+      auto-approve-scopes: '.*'
+
+oauth2:
+  google:
+    loginUrl: /login/google
     client:
       clientId: 1069112770187-86kp601ddg7bt7m4kvf1s6pokmienrob.apps.googleusercontent.com
       clientSecret: tH-1KPwe3Q7LgXwdd_qVJTA_

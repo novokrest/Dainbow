@@ -1,1 +1,1 @@
-Spring Security use '/login' relative url for redirect_uri
+Impressed by https://spring.io/guides/tutorials/spring-boot-oauth2/

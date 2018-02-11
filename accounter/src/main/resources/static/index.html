@@ -14,8 +14,11 @@
 </head>
 <body>
 	<h1>Accounter</h1>
+    <div class="container text-danger error" style="display: none">
+        There was an error (bad credentials).
+    </div>
     <div class="container unauthenticated">
-        With Google: <a href="/login">click here</a>
+        With Google: <a href="/login/google">click here</a>
     </div>
     <div class="container authenticated" style="display:none">
         Logged in as: <span id="user"></span>
@@ -36,10 +39,21 @@
                 }
             }
         });
-        $.get("/user", function(data) {
+        $.ajax({
+          url : "/user",
+          success : function(data) {
+            $(".unauthenticated").hide();
             $("#user").html(data.name);
-            $(".unauthenticated").hide()
-            $(".authenticated").show()
+            $(".authenticated").show();
+          },
+          error : function(data) {
+            $("#user").html('');
+            $(".unauthenticated").show();
+            $(".authenticated").hide();
+            if (location.href.indexOf("error=true")>=0) {
+              $(".error").show();
+            }
+          }
         });
         var logout = function() {
             $.post("/logout", function() {
