@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class DainbowAccounterApplication {
+public class 	AccounterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DainbowAccounterApplication.class, args);
+		SpringApplication.run(AccounterApplication.class, args);
 	}
 }

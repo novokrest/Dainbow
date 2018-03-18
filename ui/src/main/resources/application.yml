@@ -1,0 +1,34 @@
+server:
+  port: 30080
+
+oauth2:
+  client:
+    id: client-ui
+    secret: Ya_O9/:ln0h}`h1
+  authorization-server:
+    url: http://localhost:30005
+    check-token-path: /oauth/check_token
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_accounter_db
+    username: root
+    password: 123
+  output:
+    ansi:
+      enabled: ALWAYS
+
+security:
+  oauth2:
+    client:
+      client-id: ui_B429F95CB6DA4C648434B26BE4230827
+      client-secret: a~o!=.+?}sMn[<Q
+      access-token-uri: http://localhost:30005/oauth/token
+      user-authorization-uri: http://localhost:30005/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:30005/me
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG

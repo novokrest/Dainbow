@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@EnableOAuth2Client
-@EnableAuthorizationServer
-@Configuration
+//@EnableOAuth2Client
+//@EnableAuthorizationServer
+//@Configuration
 public class SimpleOauth2Configuration {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.oneuse.dainbow.accounter.dainbowaccounter;
+package com.oneuse.dainbow.gateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DainbowAccounterApplicationTests {
+public class GatewayApplicationTests {
 
 	@Test
 	public void contextLoads() {

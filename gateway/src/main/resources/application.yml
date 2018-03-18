@@ -1,0 +1,41 @@
+server:
+  port: 30001
+  contextPath: /dainbow
+
+security:
+  sessions: ALWAYS
+
+security:
+  oauth2:
+    client:
+      client-id: gateway_B429F95CB6DA4C648434B26BE4230827
+      client-secret: a~o!=.+?}sMn[<Q
+      access-token-uri: http://localhost:30005/oauth/token
+      user-authorization-uri: http://localhost:30005/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:30005/me
+
+spring:
+  session:
+    store-type: redis
+
+zuul:
+  routes:
+    login:
+      url: http://localhost:30005/login
+    auth:
+      url: http://localhost:30005
+      sensitive-headers:
+    ui:
+      url: http://localhost:8081
+      sensitive-headers:
+    admin:
+      url: http://localhost:8082
+      sensitive-headers:
+    resource:
+      url: http://localhost:9000
+      sensitive-headers:
+
+logging:
+  level:
+    org.springframework.security: DEBUG
