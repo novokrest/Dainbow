@@ -4,6 +4,10 @@ server:
 flyway:
   locations: sql
 
+account-schema:
+  users-by-username: SELECT username, password, enabled FROM account WHERE username = ?
+  authorities-by-username: SELECT username, role FROM account_role WHERE username = ?
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/test_accounter_db?useSSL=false

@@ -1,3 +1,19 @@
+INSERT INTO account (
+  username,
+  password
+) VALUES (
+  'user1',
+  'one'
+);
+
+INSERT INTO account_role (
+  username,
+  role
+) VALUES (
+  'user1',
+  'USER'
+);
+
 INSERT INTO oauth_client_details (
   client_id,
   resource_ids,
